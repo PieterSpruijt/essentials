@@ -29,6 +29,6 @@ module.exports = {
         `**Animated [${Animated}]**:\n${EmojisAnimated}\n\n**Standard [${EmojiCount}]**:\n${Emojis}\n\n**Over all emojis [${OverallEmojis}]**`
       )
       .setColor(userinfo.color);
-    message.channel.send(Embed);
+    message.channel.send({embeds: [Embed]});
   },
 };
