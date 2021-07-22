@@ -19,14 +19,14 @@ manager.on('shardCreate', shard => {
         .setColor('BLUE')
         .setFooter(embed2.footer_name)
         .setTimestamp();
-    startlogs.send(embed);
+    startlogs.send({embeds: [embed]});
     shard.on('ready', () => {
         let embed = new Discord.MessageEmbed()
         .setTitle(`Shard ${shard.id} ready`)
         .setColor('GREEN')
         .setFooter(embed2.footer_name)
         .setTimestamp();
-    startlogs.send(embed);
+    startlogs.send({embeds: [embed]});
     console.log(`Shard ${shard.id}/${manager.totalShards -1} is online!`);
     })
     shard.on('disconnect', (a, b) => {
@@ -36,7 +36,7 @@ manager.on('shardCreate', shard => {
             .setColor('ORANGE')
             .setFooter(embed2.footer_name)
             .setTimestamp();
-        shardlogs.send(embed);
+        shardlogs.send({embeds: [embed]});
     })
     shard.on('reconnecting', (a, b) => {
         let embed = new Discord.MessageEmbed()
@@ -44,7 +44,7 @@ manager.on('shardCreate', shard => {
             .setColor('GREEN')
             .setFooter(embed2.footer_name)
             .setTimestamp();
-        shardlogs.send(embed);
+        shardlogs.send({embeds: [embed]});
     })
     shard.on("death", (process) => {
         let embed = new Discord.MessageEmbed()
@@ -54,7 +54,7 @@ manager.on('shardCreate', shard => {
             .setColor('RED')
             .setFooter(embed2.footer_name)
             .setTimestamp();
-        shardlogs.send(embed);
+        shardlogs.send({embeds: [embed]});
     });
 });
 manager.spawn()
