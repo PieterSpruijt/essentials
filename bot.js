@@ -3,24 +3,17 @@ const fs = require("fs");
 const config = require("./config.json");
 const prefix = config.prefix;
 const { Intents } = require('discord.js');
+const otherIntents = [
+  Discord.Intents.FLAGS.DIRECT_MESSAGES,
+  Discord.Intents.FLAGS.GUILDS,
+  Discord.Intents.FLAGS.GUILD_MESSAGES,
+  Discord.Intents.FLAGS.GUILD_VOICE_STATES,
+  Discord.Intents.FLAGS.GUILD_MESSAGE_REACTIONS
+]
 const bot = new Discord.Client({
   allowedMentions: { parse: ['users', 'roles'], repliedUser: true },
   partials: ["REACTION", "MESSAGE", "CHANNEL"],
-   intents: [
-     Intents.FLAGS.GUILDS,
-     Intents.FLAGS.GUILD_BANS,
-     Intents.FLAGS.GUILD_EMOJIS,
-     Intents.FLAGS.GUILD_INTREGRATIONS,
-     Intents.FLAGS.GUILD_WEBHOOKS,
-     Intents.FLAGS.VOICE_STATES,
-     Intents.FLAGS.GUILD_MESSAGES,
-     Intents.FLAGS.GUILD_MESSAGE_REACTIONS,
-     Intents.FLAGS.GUILD_MESSAGE_TYPING,
-     Intents.FLAGS.DIRECT_MESSAGES,
-     Intents.FLAGS.DIRECT_MESSAGE_REACTIONS,
-     Intents.FLAGS.DIRECT_MESSAGE_TYPING,
-     Intents.FLAGS.GUILD_VOICE_STATES
-  ],
+   intents: [otherIntents]
 });
 const mongoose = require("mongoose");
 
