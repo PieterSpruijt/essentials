@@ -25,7 +25,7 @@ module.exports = {
                   (u2) => u2.author.id === message.author.id,
                   { time: 15000, max: 1, errors: ["time"] }
                 );
-                if (message.guild.channels.cache.get(msgs.first().mentions.channels.first().id) {
+                if (message.guild.channels.cache.get(msgs.first().mentions.channels.first().id)) {
                     let channel = msgs.first().mentions.channels.first();
                   message.channel.send(`What is the prize of the giveaway?`);
                   try {
