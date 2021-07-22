@@ -1,5 +1,4 @@
 const { MessageEmbed } = require("discord.js");
-const sendError = require("../../util/error");
 
 module.exports = {
   name: "loop",
@@ -10,14 +9,15 @@ module.exports = {
     const serverQueue = message.client.queue.get(message.guild.id);
        if (serverQueue) {
             serverQueue.loop = !serverQueue.loop;
-            return message.channel.send({
-                embed: {
+             message.channel.send({
+                embeds: [{
                     color: userinfo.color,
                     description: `🔁  **|**  Loop is **\`${serverQueue.loop === true ? "enabled" : "disabled"}\`**`
-                }
+                }]
             });
+            return message.client.queue.set(message.guild.id, serverQueue)
         };
-    return sendError("There is nothing playing in this server.", message.channel);
+    return bot.error("There is nothing playing in this server.", message.channel);
   },
 };
 

@@ -7,6 +7,7 @@ module.exports = {
   category: "music",
   usage: "`lyrics [url/name]`",
   run: async (bot, message, args, userinfo) => {
+    if (!userinfo.staff) return bot.error(`You Dont have Permission to do that!`, message.channel);
     let lyrics = null;
     const queue = message.client.queue.get(message.guild.id);
     if (args.length) {
@@ -27,7 +28,7 @@ module.exports = {
         lyricsEmbed.description = `${lyricsEmbed.description.substr(0, 2045)}...`;
       return message.channel.send(lyricsEmbed).catch(console.error);
     }
-    if (!queue) return message.channel.send(`I can't find the lyrics!`);
+    if (!queue) return bot.error(`I can't find the lyrics!`, message.channel)
 
 
     try {
@@ -45,7 +46,7 @@ module.exports = {
 
     if (lyricsEmbed.description.length >= 2048)
       lyricsEmbed.description = `${lyricsEmbed.description.substr(0, 2045)}...`;
-    return message.channel.send(lyricsEmbed);
+    return message.channel.send({embeds: {lyricsEmbed}});
   },
 };
 

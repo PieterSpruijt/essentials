@@ -5,17 +5,12 @@ module.exports = {
   usage: "`resume`",
   run: async (bot, message, args) => {
     const channel = message.member.voice.channel;
-    if (!channel) return message.channel.send('> You should join a voice channel before using this command!');
+    if (!channel) return bot.error(`You should join a voice channel before using this command!`, message.channel);
     let queue = message.client.queue.get(message.guild.id)
-    if(!queue) return message.channel.send({
-        embed: {
-            description: '> There is nothing playing right now to resume!'
-        }
-    })
+    if(!queue) return bot.error(`There is nothing playing right now to resume!`, message.channel)
     if(queue.playing !== false)
-    queue.connection.dispatcher.resume()
-    message.react('▶')
-    message.channel.send('> Resumed The music!')
+    queue.player.unpause()
+    bot.success(`Resumed the music!`, message.channel);
   },
 };
 
