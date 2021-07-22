@@ -22,13 +22,13 @@ module.exports = async (oldChannel, newChannel) => {
                     .setColor("#ff0000")
 
                 try {
-                    client.channels.cache.get(data.Channel).send(embed);
+                    client.channels.cache.get(data.Channel).send({embeds: [embed]});
                 }
                 catch { }
             }
 
     var storedSettings = await logchannel.findOne({ gid: newChannel.guild.id });
     if (!newChannel.guild.channels.cache.get(storedSettings.logchannel)) return;
-    newChannel.guild.channels.cache.get(storedSettings.logchannel).send(embed)
+    newChannel.guild.channels.cache.get(storedSettings.logchannel).send({embeds: [embed]})
   } catch (e) {}
 };

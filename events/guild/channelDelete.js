@@ -18,6 +18,6 @@ module.exports = async (channel) => {
 
     var storedSettings = await logchannel.findOne({ gid: channel.guild.id });
     if (!channel.guild.channels.cache.get(storedSettings.logchannel)) return;
-    channel.guild.channels.cache.get(storedSettings.logchannel).send(embed)
+    channel.guild.channels.cache.get(storedSettings.logchannel).send({embeds: [embed]})
   } catch (e) {}
 };

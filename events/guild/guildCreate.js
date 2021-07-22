@@ -14,7 +14,7 @@ module.exports = async (guild, bot) => {
       .setColor('#e91e63')
       .setFooter(embed2.footer_name)
       .setTimestamp();
-  webhookClient.send(newembed);
+  webhookClient.send({embeds: [newembed]});
   let defaultChannel = "";
   guild.channels.cache.forEach((channel) => {
     if(channel.type == "text" && defaultChannel == "") {
@@ -34,7 +34,7 @@ module.exports = async (guild, bot) => {
         { name: 'Invite the bot!', value: `You can invite the bot by pressing [HERE](${config.inviteurl})` }
     )
   Embed2.setFooter(embed.footer_name, embed.footer_foto);
-  defaultChannel.send(Embed2)
+  defaultChannel.send({embeds: [Embed2]})
   defaultChannel.send(config.support_server); 
   } catch (e) {}
 };

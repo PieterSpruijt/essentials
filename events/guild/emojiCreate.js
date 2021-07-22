@@ -12,6 +12,6 @@ module.exports = async (emoji) => {
 
     var storedSettings = await logchannel.findOne({ gid: emoji.guild.id });
     if (!emoji.guild.channels.cache.get(storedSettings.logchannel)) return;
-    emoji.guild.channels.cache.get(storedSettings.logchannel).send(embed)
+    emoji.guild.channels.cache.get(storedSettings.logchannel).send({embeds: [embed]})
   } catch (e) {}
 };

@@ -11,6 +11,6 @@ module.exports = async (guild, bot) => {
       .setColor('RED')
       .setFooter(embed2.footer_name)
       .setTimestamp();
-  webhookClient.send(newembed);
+  webhookClient.send({embeds: [newembed]});
   } catch (e) {}
 };

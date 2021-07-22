@@ -9,5 +9,5 @@ module.exports = async (text, channel) => {
     let embed = new MessageEmbed()
     .setColor(`RED`)
     .setDescription(emoji.normal.cross + ` | ` + text);
-    await channel.send(embed)
+    await channel.send({embeds: [embed]})
 }

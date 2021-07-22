@@ -46,7 +46,7 @@ module.exports = async (bot, message) => {
      ) {
        let isafk = await afkmodel.findOne({gid: message.guild.id, userid: u.id});
        if (isafk) {
-         message.channel.send({embed: {description: `**${u.tag}** is afk: ${isafk.message}`, color: `RED`}});
+         message.channel.send({embeds: [{description: `**${u.tag}** is afk: ${isafk.message}`, color: `RED`}]});
        }
      }
   })
@@ -153,7 +153,7 @@ module.exports = async (bot, message) => {
       .addFields(
         { name: `Support`, value: `[Support server](${config.support_server})`, inline: true },
       )
-    return message.channel.send(InfoEmbed);
+    return message.channel.send({embeds: [infoEmbed]});
   }
 
   let command = bot.commands.get(cmd);
@@ -171,7 +171,7 @@ module.exports = async (bot, message) => {
       }
     }
     if (userinfo.banned) {
-      return message.channel.send({ embed: { description: `${emoji.normal.alert} | ooh ooh, You are banned by the developers of this bot!!`, color: "#e91e63" } });
+      return message.channel.send({ embeds: [{ description: `${emoji.normal.alert} | ooh ooh, You are banned by the developers of this bot!!`, color: "#e91e63" } ]});
     }
     if (command.timeout) {
       if (Timeout.has(`${message.author.id}${command.name}`)) {
@@ -185,8 +185,8 @@ module.exports = async (bot, message) => {
             .addField(`Message`, message.content)
             .addField(`ERROR`, `\`\`\`${err}\`\`\``)
             .addField(`STACK`, `\`\`\`${err.stack}\`\`\``);
-          errorlog.send(embed).catch(error => { })
-          message.channel.send({ embed: { title: `ERROR`, description: `an error has occurred\nSend this to the developers: \`${password}\`You can contact the developers [by joining the support server](${config.support_server})` } });
+          errorlog.send({embeds: [embed]}).catch(error => { })
+          message.channel.send({ embeds: [{ title: `ERROR`, description: `an error has occurred\nSend this to the developers: \`${password}\`You can contact the developers [by joining the support server](${config.support_server})` } ]});
         });
         Timeout.add(`${message.author.id}${command.name}`);
         setTimeout(() => {
@@ -202,8 +202,8 @@ module.exports = async (bot, message) => {
             .addField(`Message`, message.content)
             .addField(`ERROR`, `\`\`\`${err}\`\`\``)
             .addField(`STACK`, `\`\`\`${err.stack}\`\`\``);
-        errorlog.send(embed).catch(error => { })
-        message.channel.send({ embed: { title: `ERROR`, description: `an error has occurred\nSend this to the developers: \`${password}\`You can contact the developers [by joining the support server](${config.support_server})` } });
+        errorlog.send({embeds: [embed]}).catch(error => { })
+        message.channel.send({ embeds: [{ title: `ERROR`, description: `an error has occurred\nSend this to the developers: \`${password}\`You can contact the developers [by joining the support server](${config.support_server})` } ]});
       });
     }
   } else {
