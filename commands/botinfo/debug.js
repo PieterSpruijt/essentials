@@ -16,7 +16,7 @@ module.exports = {
           {name: `Voice channels connected:`, value: bot.voice.connections.size}
         )
         .setColor(userinfo.color);
-    message.channel.send(Embed);
+    message.channel.send({embeds: [Embed]});
     
     
   },

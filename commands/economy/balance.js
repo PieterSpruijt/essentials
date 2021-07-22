@@ -24,7 +24,7 @@ module.exports = {
       {name: `Hand`, value: `🍣 ` + userData.hand },
       {name: `Bank`, value: `:bank: ` + userData.bank }
     );
-    message.channel.send(embed)
+    message.channel.send({embeds: [embed]})
 
     
   },

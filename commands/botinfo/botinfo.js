@@ -81,6 +81,6 @@ Embed.setColor(userinfo.color)
   { name: `Links:`, value: `Add me: [[HERE]](${config.inviteurl})\nSupport Server: [[HERE]](${config.support_server})\nWebsite: [[HERE]](${config.website})`, inline: false },
   )
 Embed.setFooter(bot.info.embed.footer_name, bot.info.embed.footer_foto);
-    message.channel.send(Embed);  
+    message.channel.send({embeds: [Embed]});  
   },
 };

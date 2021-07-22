@@ -16,7 +16,7 @@ module.exports = {
           .setTitle(`Random duck`)
           .setImage(data.url)
           .setColor(userinfo.color);
-        message.channel.send(embed2);
+        message.channel.send({embeds: [embed2]});
         
       })
   },

@@ -11,13 +11,13 @@ module.exports = {
     if (!args[0]) return bot.error(` You did not specify your report!`, message.channel);
     let report = args.join(" ");
 
-    buglogs.send(
+    buglogs.send({embeds: [
         new Discord.MessageEmbed()
           .setThumbnail(message.author.displayAvatarURL())
           .setTitle(`New bugreport from ${message.author.tag}!`)
           .setDescription(report)
           .setColor(userinfo.color)
-      );
+    ]});
       message.channel.send(`${bot.info.emojis.normal.check} | Your bugreport has been send!`);
   },
 };

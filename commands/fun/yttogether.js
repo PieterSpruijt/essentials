@@ -31,7 +31,7 @@ module.exports = {
                 if (invite.error || !invite.code) return message.channel.send("❌ | Could not start **YouTube Together**!");
                 let embed = new Discord.MessageEmbed()
                 .setDescription(`[Click here to start YouTube together in${channel.name}](https://discord.gg/${invite.code})`);
-                message.channel.send(embed);
+                message.channel.send({embeds: [embed]});
             })
             .catch(e => {
                 bot.error(` Could not start **YouTube Together**!`, message.channel)

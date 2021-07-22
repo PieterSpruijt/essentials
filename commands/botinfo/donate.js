@@ -15,6 +15,6 @@ module.exports = {
         .setColor(userinfo.color)
         .addFields(
           {name: `Patreon`, value: `[click here](https://patreon.com/join/essentialsteam)`});
-    message.channel.send(Embed);
+    message.channel.send({embeds: [Embed]});
   },
 };

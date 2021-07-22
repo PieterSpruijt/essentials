@@ -17,6 +17,6 @@ module.exports = {
       .setDescription(msg.content)
       .setFooter(`Date: ${msg.date} | ${args[0] || 1}/${snipes.length}`);
     if (msg.attachment) Embed.setImage(msg.attachment);
-    message.channel.send(Embed);
+    message.channel.send({embeds: [Embed]});
   },
 };

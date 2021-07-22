@@ -18,7 +18,7 @@ module.exports = {
 	  .setTimestamp()
 	  .setFooter(`© | Made by Snowy#4099`);
 	  
-	  if(!message.member.permissiosn.has(bot.perms.ADMINISTRATOR)) return message.channel.send(noperms);
+	  if(!message.member.permissiosn.has(bot.perms.ADMINISTRATOR)) return message.channel.send({embeds: [noperms]});
 	  
     var User = message.mentions.members.first();
     var userData = await money.findOne({ gid: message.guild.id, userid: message.author.id});
@@ -41,7 +41,7 @@ module.exports = {
         .setDescription(`${bot.info.emojis.normal.check} <@${message.author.id}> selled ${replies[result]} on the lottery and earned 🍣 ${amount} \n\n${message.author.username} lost ${amount} by buying ${replies[result]}`)
 		.setColor(userinfo.color);
 	  
-        message.channel.send(embed1);
+        message.channel.send({embeds: [embed1]});
 
         money.findOne(
           { gid: message.guild.id, userid: User.id},

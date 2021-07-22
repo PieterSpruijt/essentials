@@ -52,7 +52,7 @@ module.exports = {
         .setDescription(`${emoji.normal.cross} | You Dont have Permission to do that! You must be Administrator!`)
         .setColor(userinfo.color);
     if (!userinfo.developer && !message.member.permissions.has(bot.perms.ADMINISTRATOR)) {
-      message.channel.send(Embed2)
+      message.channel.send({embeds: [Embed2]})
     }
     
     

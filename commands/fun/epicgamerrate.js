@@ -15,6 +15,6 @@ module.exports = {
     .setTitle(`epic gamer rate machine`)
     .setDescription(`${user.username} is ${procent}% epic gamer 😎`)
     .setColor(userinfo.color);
-    message.channel.send(Embed)
+    message.channel.send({embeds: [Embed]})
   },
 };

@@ -89,7 +89,7 @@ module.exports = {
                           
                     
                         } else {
-                          return message.channel.send(Embed5);
+                          return message.channel.send({embeds: [Embed5]});
                         }
                       } catch (e) {
                         return console.log(e)
@@ -97,7 +97,7 @@ module.exports = {
                       
                 
                     } else {
-                      return message.channel.send(Embed6);
+                      return message.channel.send({embeds: [Embed6]});
                     }
                   } catch (e) {
                     return message.channel.send(`You did not answer!`);
@@ -106,7 +106,7 @@ module.exports = {
                   
                   
                 } else {
-                  message.channel.send(Embed4);
+                  message.channel.send({embeds: [Embed4]});
                 }
               } catch (e) {
                 return message.channel.send(`You did not answer!`);
@@ -114,7 +114,7 @@ module.exports = {
               
 
             } else {
-              message.channel.send(Embed3);
+              message.channel.send({embeds: [Embed3]});
             }
           } catch (e) {
             return message.channel.send(`You did not answer!`);

@@ -35,7 +35,7 @@ module.exports = {
       .setFooter(
         `Reply to this message with the correct answer! You have 60 seconds.`
       );
-    message.channel.send(Embed);
+    message.channel.send({embeds: [Embed]});
     try {
       let msgs = await message.channel.awaitMessages(
         (u2) => u2.author.id === message.author.id,

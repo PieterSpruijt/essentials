@@ -17,7 +17,7 @@ module.exports = {
                   .setURL(res.data.url)
                   .setImage(`https://media1.giphy.com/media/${res.data.id}/giphy.gif`)
                   .setThumbnail(`https://i.imgur.com/Qf3OBCD.gif`);
-      message.channel.send(textembed)
+      message.channel.send({embeds: [textembed]})
   });
   },
 };

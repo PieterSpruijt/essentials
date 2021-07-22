@@ -20,11 +20,11 @@ module.exports = {
         .setColor(userinfo.color);
 
     if (!message.member.permissions.has(bot.perms.ADMINISTRATOR))
-      return message.channel.send(Embed2);
+      return message.channel.send({embeds: [Embed2]});
     if (!args[0])
-      return message.channel.send(Embed3);
+      return message.channel.send({embeds: [Embed3]});
     if (!args.slice(1).join(" "))
-      return message.channel.send(Embed4);
+      return message.channel.send({embeds: [Embed4]});
     custom.findOne(
       { Guild: message.guild.id, Command: args[0] },
       async (err, data) => {

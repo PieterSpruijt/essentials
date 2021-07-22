@@ -35,7 +35,7 @@ module.exports = {
             { name: `Names:`, value: content}
           )
           .setColor(userinfo.color);
-        message.channel.send(embed2);
+        message.channel.send({embeds: [embed2]});
       })
   },
 };

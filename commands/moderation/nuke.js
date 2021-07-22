@@ -18,7 +18,7 @@ module.exports = {
         .setImage(`https://i.imgur.com/Da7ScU4.gif`)
         .setTitle(`Channel Nuked by **${message.author.tag}**`)
         .setColor(`RED`)
-        channel2.send(Embed);
+        channel2.send({embeds: [Embed]});
         })   
     
   },

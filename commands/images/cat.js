@@ -16,7 +16,7 @@ module.exports = {
           .setTitle(`Random cat`)
           .setImage(data.file)
           .setColor(userinfo.color);
-        message.channel.send(embed2);
+        message.channel.send({embeds: [embed2]});
       })
   },
 };

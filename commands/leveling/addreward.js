@@ -9,7 +9,7 @@ module.exports = {
     run: async (bot, message, args, userinfo) => {
         if (!message.member.permissions.has(bot.perms.ADMINISTRATOR)) return bot.error(`You Dont have Permission to do that! You must be Administrator!`, message.channel);
         let number = (await rewards.find({ gid: message.guild.id })).length;
-        if (number >= 20) return message.channel.send({ embed: { color: userinfo.color, title: `Ooh, Ooh`, description: `You have reached the limit of reactionroles! Delete some with \`delreward\`` } })
+        if (number >= 20) return message.channel.send({ embeds: [{ color: userinfo.color, title: `Ooh, Ooh`, description: `You have reached the limit of reactionroles! Delete some with \`delreward\`` }] })
         let embed = new Discord.MessageEmbed()
             .setColor(userinfo.color)
             .setTitle(`Create level reward`)
@@ -18,7 +18,7 @@ module.exports = {
                 { name: `Role:`, value: `${bot.info.emojis.animated.loading} | Loading` },
                 { name: `Level:`, value: `${bot.info.emojis.animated.loading} | Loading` },
             );
-        const embedmessage = await message.channel.send(embed);
+        const embedmessage = await message.channel.send({embeds: [embed]});
         const m = await message.channel.send(`What is the role of the reward?`);
         try {
             let e = await message.channel.awaitMessages(
@@ -36,7 +36,7 @@ module.exports = {
                         { name: `Role:`, value: `${bot.info.emojis.normal.check} | <@&${role.id}>` },
                         { name: `Level:`, value: `${bot.info.emojis.animated.loading} | Loading` },
                     );
-                embedmessage.edit(embed);
+                embedmessage.edit({embeds: [embed]});
                 m.edit(`What is the needed level to get the role?`);
                 e.first().delete().catch(e => { });
                 try {
@@ -64,7 +64,7 @@ module.exports = {
                                 { name: `Level:`, value: `${bot.info.emojis.normal.check} | ${number}` },
                             );
 
-                        embedmessage.edit(embed)
+                        embedmessage.edit({embeds: [embed]})
 
                     } else {
                         return bot.error(`That's not a valid number`, message.channel);

@@ -28,7 +28,7 @@ module.exports = {
                   .setURL(`https://reddit.com/${link}`)
                   .setFooter(`👍${ups} | 💬${coms}`)
 
-              message.channel.send(textembed)
+              message.channel.send({embeds: [textembed]})
           }
 
           var image = index.preview.images[0].source.url.replace('&amp;', '&')
@@ -45,7 +45,7 @@ module.exports = {
                   .setURL(`https://reddit.com/${link}`)
                   .setFooter(`👍${ups} | 💬${coms}`)
 
-              message.channel.send(textembed)
+              message.channel.send({embeds: [textembed]})
           }
           const imageembed = new Discord.MessageEmbed()
               .setTitle(title)
@@ -53,7 +53,7 @@ module.exports = {
               .setColor(userinfo.color)
               .setURL(`https://reddit.com/${link}`)
               .setFooter(`👍${ups} | 💬${coms}`)
-          message.channel.send(imageembed)
+          message.channel.send({embeds: [imageembed]})
       }).on('error', function (e) {})
   })
   },

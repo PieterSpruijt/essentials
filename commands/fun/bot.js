@@ -28,7 +28,7 @@ module.exports = {
           if (bot2.monthlyPoints) Embed.addField(`Votes this month:`, bot2.monthlyPoints, true)
           if (bot2.owners) Embed.addField(`Owner(S):`, `<@${bot2.owners}>`, true)
           if (bot2.invite, bot2.website, bot2.github) Embed.addField(`Links`, `[Invite](${bot2.invite}) | [Website](${bot2.website}) | [Github](${bot2.github})`, true)
-          message.channel.send(Embed);
+          message.channel.send({embeds: [Embed]});
         }).catch(error => {
           bot.error(`You did not specify an user id to check!`, message.channel)
         });

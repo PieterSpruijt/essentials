@@ -14,6 +14,6 @@ module.exports = {
     let Embed = new MessageEmbed()
     .setDescription(`${user.username} is ${procent}% gay :gay_pride_flag:`)
     .setColor(userinfo.color);
-    message.channel.send(Embed)
+    message.channel.send({embeds: [Embed]})
   },
 };

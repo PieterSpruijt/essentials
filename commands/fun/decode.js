@@ -19,7 +19,7 @@ module.exports = {
           .setTitle(`Decode machine`)
           .addField(`Text:`, '```' +  data.text + '```')
           .setColor(userinfo.color);
-        message.channel.send(embed2);
+        message.channel.send({embeds: [embed2]});
       })
   },
 };

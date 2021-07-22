@@ -11,12 +11,13 @@ module.exports = {
       return bot.error(`You did not specify your ad!`, message.channel)
     bot.channels.cache
       .get(bot.info.ids.adchannel)
-      .send(
+      .send({embeds: [
         new MessageEmbed()
           .setThumbnail(message.author.displayAvatarURL())
           .setTitle(`New advertisement from ${message.author.tag}!`)
           .setDescription(test)
           .setColor(userinfo.color)
+      ]}
       );
       message.channel.send(`${bot.info.emojis.normal.check} | Your ad has been send!`)
   },

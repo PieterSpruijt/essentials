@@ -16,6 +16,6 @@ module.exports = {
     if (!Roles.length) {
       Roles = `No reactionroles set!`
     }
-    message.channel.send({embed: {color: userinfo.color, title: `All reactionroles`, description: Roles}})
+    message.channel.send({embeds: [{color: userinfo.color, title: `All reactionroles`, description: Roles}]})
   },
 };

@@ -19,7 +19,7 @@ module.exports = {
           .setTitle(`Encode machine`)
           .addField(`Binary:`, '```' +  data.binary + '```')
           .setColor(userinfo.color);
-        message.channel.send(embed2);
+        message.channel.send({embeds: [embed2]});
       })
   },
 };

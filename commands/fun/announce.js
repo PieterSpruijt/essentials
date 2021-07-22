@@ -20,7 +20,7 @@ module.exports = {
       .setTitle(`New announcement!`)
       .setDescription(`${MSG}`)
       .setColor(userinfo.color);
-    rChannel.send(_).catch(error => {message.channel.send(`I can't send a message in <#${rChannel.id}>!`)})
+    rChannel.send({embeds: [_]}).catch(error => {message.channel.send(`I can't send a message in <#${rChannel.id}>!`)})
     message.channel.send(`Announcement send in <#${rChannel.id}>`)
     }  
   },

@@ -16,7 +16,7 @@ module.exports = {
           .setTitle(`Random panda`)
           .setImage(data.link)
           .setColor(userinfo.color);
-        message.channel.send(embed2);
+        message.channel.send({embeds: [embed2]});
       })
   },
 };

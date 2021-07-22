@@ -27,7 +27,7 @@ module.exports = {
         .setTitle(`8Ball!`)
         .setDescription(`Your question: ${test}\nMy reply: ${response}`)
         .setColor(userinfo.color);
-      let m = await message.channel.send(Embed);
+      let m = await message.channel.send({embeds: [Embed]});
     
     }
   },

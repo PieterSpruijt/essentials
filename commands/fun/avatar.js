@@ -72,6 +72,6 @@ module.exports = {
     Embed.addField(`📆Joined:`, formatDate(User.joinedAt), true)
     Embed.addField(`:id: ID`, User.id, true)
     Embed.addField(`👮‍♂️ Roles`, roles, true)
-    message.channel.send(Embed)
+    message.channel.send({embeds: [Embed]})
   },
 };

@@ -27,7 +27,7 @@ module.exports = {
           .addField('Preview', `\`\`\`${ascii}\`\`\``)
           .setColor(userinfo.color)
           .setFooter(bot.info.embed.footer_name, bot.info.embed.footer_foto);
-          message.channel.send(Embed3);
+          message.channel.send({embeds: [Embed3]});
         
     
       

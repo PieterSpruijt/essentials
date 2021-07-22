@@ -49,7 +49,7 @@ module.exports = {
     .setDescription(`**${message.guild.name}'s** leveling Leaderboard\n\n${content}`)
     .setColor(userinfo.color)
     .setFooter(bot.info.embed.footer_name)
-          message.channel.send(embed);
+          message.channel.send({embeds: [embed]});
 
     } else if (args[0] === `invites`) {
      message.channel.send(`I don't have invites, only https://dsc.gg/essentialscanary`);
@@ -104,7 +104,7 @@ module.exports = {
     .setDescription(`**${message.guild.name}'s** hand Leaderboard\n\n${content}`)
     .setColor(userinfo.color)
     .setFooter(bot.info.embed.footer_name)
-    message.channel.send(handembed);
+    message.channel.send({embeds: [handembed]});
 
     } else if (args[0] === ``) {
 

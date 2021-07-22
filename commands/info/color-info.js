@@ -23,7 +23,7 @@ module.exports = {
           )
           .setImage(url)
           .setColor(args[0]);
-        message.channel.send(_);
+        message.channel.send({embeds: [_]});
 
       });
   },

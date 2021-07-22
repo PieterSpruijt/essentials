@@ -32,7 +32,7 @@ module.exports = {
               ).join("\n");
             })
           );
-        message.channel.send(Embed);
+        message.channel.send({embeds: [Embed]});
       }
     );
   },

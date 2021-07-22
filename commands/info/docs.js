@@ -17,7 +17,7 @@ module.exports = {
       if (data && !data.error) {
         message.channel.send({embed: data});
       } else {
-        message.channel.send({embed: {description: `Could not find that documentation!`, color: `#7289da`}})
+        message.channel.send({embeds: [{description: `Could not find that documentation!`, color: `#7289da`}]})
       }
     })
     .catch(err => {

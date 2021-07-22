@@ -22,6 +22,6 @@ module.exports = {
     .addField('Question', `\`\`\`css\n${args.join(' ')}\`\`\``)
     .addField('Answer', `\`\`\`css\n${resp}\`\`\``)
 
-    message.channel.send(embed);
+    message.channel.send({embeds: [embed]});
   },
 };

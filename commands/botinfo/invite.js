@@ -13,6 +13,6 @@ module.exports = {
         .setDescription(bot.config.inviteurl)
         .setFooter(bot.info.embed.footer_name, bot.info.embed.footer_foto)
         .setColor(userinfo.color);
-    message.channel.send(Embed);
+    message.channel.send({embeds: [Embed]});
   },
 };

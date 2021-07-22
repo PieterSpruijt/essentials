@@ -27,7 +27,7 @@ module.exports = {
     )
     .setImage(url)
     .setColor(userinfo.color);
-    message.channel.send(embed);
+    message.channel.send({embeds: [embed]});
     }
     else if (emoji = animatedEmoteRegex.exec(msg)) {
     let url = "https://cdn.discordapp.com/emojis/" + emoji[1] + ".gif?v=1"
@@ -44,7 +44,7 @@ module.exports = {
     )
     .setImage(url)
     .setColor(userinfo.color);
-    message.channel.send(embed);
+    message.channel.send({embeds: [embed]});
     }
     else {
     message.channel.send("Couldn't find an emoji to paste!")

@@ -21,7 +21,7 @@ module.exports = {
       });
       await newSettings.save().catch(()=>{});
       userinfo2 = await userdb.findOne({ userid: target.id });
-      return message.channel.send({embed: {description: `I succesfully saved the new user, try your command again`, color: `GREEN`}});
+      return message.channel.send({embeds: [{description: `I succesfully saved the new user, try your command again`, color: `GREEN`}]});
     }
     if (!args[0]) return bot.error(`You did not specify a setting`, message.channel);
     if (args[0] !== `snipe`) return bot.error(`You did not specify a setting`, message.channel);
@@ -35,7 +35,7 @@ module.exports = {
               data.save();
           }
         );
-        message.channel.send({embed: {description: `${bot.info.emojis.normal.check} You turned **${args[0]}** on`, color: `#e91e63`}});
+        message.channel.send({embeds: [{description: `${bot.info.emojis.normal.check} You turned **${args[0]}** on`, color: `#e91e63`}]});
       } else if (args[1] === `false`) {
         userdb.findOne(
           { userid: target.id },
@@ -45,7 +45,7 @@ module.exports = {
               data.save();
           }
         );
-        message.channel.send({embed: {description: `${bot.info.emojis.normal.check} You turned **${args[0]}** off`, color: `#e91e63`}});
+        message.channel.send({embeds: [{description: `${bot.info.emojis.normal.check} You turned **${args[0]}** off`, color: `#e91e63`}]});
       }
       
     

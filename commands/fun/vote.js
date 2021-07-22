@@ -22,15 +22,15 @@ const Embed2 = new MessageEmbed()
     let support = userinfo.developer;
     if (!support) {
       dbl.hasVoted(message.author.id).then(voted => {
-        if (voted) message.channel.send(Embed1);
-        if (!voted) message.channel.send(Embed2);
+        if (voted) message.channel.send({embeds: [Embed1]});
+        if (!voted) message.channel.send({embeds: [Embed2]});
     }).catch(error => {bot.error(`there was an error by checking this vote!`, message.channel)});
     }
     if (support) {
       if (!args.length) {
         dbl.hasVoted(message.author.id).then(voted => {
-          if (voted) message.channel.send(Embed1);
-          if (!voted) message.channel.send(Embed2);
+          if (voted) message.channel.send({embeds: [Embed1]});
+          if (!voted) message.channel.send({embeds: [Embed2]});
         }).catch(error => {bot.error(`there was an error by checking this vote!`, message.channel)});
       }
       if (args.length) {
@@ -47,8 +47,8 @@ let notvotedEmbed = new MessageEmbed()
         notvotedEmbed.setColor(`#ff0000`);
 
         dbl.hasVoted(`${User.id}`).then(voted => {
-          if (voted) message.channel.send(votedEmbed);
-          if (!voted) message.channel.send(notvotedEmbed);
+          if (voted) message.channel.send({embeds: [votedEmbed]});
+          if (!voted) message.channel.send({embeds: [notvotedEmbed]});
         }).catch(error => {bot.error(`there was an error by checking this vote!`, message.channel)});
       }
     }

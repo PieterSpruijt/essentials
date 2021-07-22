@@ -38,7 +38,7 @@ module.exports = {
       let slotsEmbed1 = new Discord.MessageEmbed()
           .setDescription(`${slotItems[number[0]]} | ${slotItems[number[1]]} | ${slotItems[number[2]]}\n\nYou won \`${wins}\` credits.`)
           .setColor(userinfo.color)
-      message.channel.send(slotsEmbed1)
+      message.channel.send({embeds: [slotsEmbed1]})
       money.findOne(
         { gid: message.guild.id, userid: message.author.id},
           async (err, data) => {
@@ -51,7 +51,7 @@ module.exports = {
       let slotsEmbed = new Discord.MessageEmbed()
           .setDescription(`${slotItems[number[0]]} | ${slotItems[number[1]]} | ${slotItems[number[2]]}\n\nYou lost \`${wins}\` credits.`)
           .setColor(userinfo.color)
-      message.channel.send(slotsEmbed);
+      message.channel.send({embeds: [slotsEmbed]});
       money.findOne(
         { gid: message.guild.id, userid: message.author.id},
           async (err, data) => {

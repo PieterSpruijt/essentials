@@ -46,7 +46,7 @@ module.exports = {
         const { commands } = message.client;
 
         if(!args.length){
-            return message.channel.send(Embed)
+            return message.channel.send({embeds: [Embed]})
         }
 
         const name = args[0].toLowerCase();
@@ -56,7 +56,7 @@ module.exports = {
         .setColor(`#e91e63`);
 
         if (!command) {
-          let m = await message.channel.send(Embed2);
+          let m = await message.channel.send({embeds: [Embed2]});
   
     return;
         }   
@@ -70,6 +70,6 @@ module.exports = {
         if (command.usage) helpEmbed.addField(`**Usage:**`, command.usage, true)
         if (command.aliases) helpEmbed.addField(`**Aliases:**`, command.aliases.join(', '), true)
         helpEmbed.setFooter(bot.info.embed.footer_name, bot.info.embed.footer_foto);
-        let m = await message.channel.send(helpEmbed);
+        let m = await message.channel.send({embeds: [helpEmbed]});
   },
 };

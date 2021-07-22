@@ -16,7 +16,7 @@ module.exports = {
           .setTitle(`Random bot token`)
           .addField(`Token:`, '```' +  data.token + '```')
           .setColor(userinfo.color);
-        message.channel.send(embed2);
+        message.channel.send({embeds: [embed2]});
       })
   },
 };

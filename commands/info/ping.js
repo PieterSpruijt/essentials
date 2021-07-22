@@ -33,11 +33,11 @@ module.exports = {
         if (reaction.message.id != msg.id) return;
         if(reaction.emoji.name === `📊`) {
             msg.reactions.removeAll().catch(e => {});
-            msg.edit(msANDlatency);  
+            msg.edit({embeds: [msANDlatency]});  
         }
         if(reaction.emoji.name === `🏓`) {
           msg.reactions.removeAll().catch(e => {});
-          msg.edit(pongembed);
+          msg.edit({embeds: [pongembed]});
          
       }
     });

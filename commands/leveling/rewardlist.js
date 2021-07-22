@@ -12,6 +12,6 @@ module.exports = {
     if (!Rewards.length) {
       List = `No level rewards set!`
     }
-    message.channel.send({embed: {color: userinfo.color, title: `All level rewards`, description: List}})
+    message.channel.send({embeds: [{color: userinfo.color, title: `All level rewards`, description: List}]})
   },
 };

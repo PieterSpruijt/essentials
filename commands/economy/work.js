@@ -32,7 +32,7 @@ module.exports = {
         let embed1 = new Discord.MessageEmbed()
         .setColor(userinfo.color)
         .setDescription(`${bot.info.emojis.normal.check} You worked as a ${replies[result]} and earned 🍣 ${amount}`);
-        message.channel.send(embed1)
+        message.channel.send({embeds: [embed1]})
 
         money.findOne(
           { gid: message.guild.id, userid: User.id},

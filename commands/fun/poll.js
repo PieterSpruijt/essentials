@@ -24,7 +24,7 @@ module.exports = {
       .setDescription(`${question}`)
       .setFooter(`${message.author.username} created this poll.`)
       .setColor(userinfo.color);
-    let msg = await bot.channels.cache.get(channel.id).send(Embed);
+    let msg = await bot.channels.cache.get(channel.id).send({embeds: [Embed]});
     await msg.react("👍");
     await msg.react("👎");
   },

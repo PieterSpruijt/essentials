@@ -44,7 +44,7 @@ module.exports = {
             inline: true,
           }
         );
-      Channel.send(Embed);
+      Channel.send({embeds: [Embed]});
       message.channel.send(`<@${message.author.id}>, your report is sended!`)
     }
   },

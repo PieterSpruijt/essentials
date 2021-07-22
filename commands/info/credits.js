@@ -15,7 +15,7 @@ module.exports = {
         {name: `Developers`, value: '[PieterSpruijt#5139](https://github.com/PieterSpruijt)  =>  `bot` & `server` & `hosting`\n! ! ! IrishAU#3995  =>  `website`'},
         {name: `Thanks to:`, value: `[All donators](https://patreon.com/join/essentialsteam) <:donator:826425335708385280>\n[All translators](${bot.config.support_server})\n[All staff & support members](${bot.config.support_server})\n[</Pascal>#4627](https://github.com/DotwoodMedia)  =>  \`logging\``}
     );
-    message.channel.send(_)
+    message.channel.send({embeds: [_]})
   },
 };
 
