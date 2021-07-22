@@ -26,7 +26,7 @@
     "disbots.net": "^2.0.2",
     "discord-giveaways": "^4.5.1",
     "discord-image-generation": "^1.4.9",
-    "discord.js": "discord.js@13.0.0-dev.328501b.1626912223",
+    "discord.js": "13.0.0-dev.328501b.1626912223",
     "figlet": "^1.5.0",
     "generate-password": "^1.6.0",
     "giphy-api": "^2.0.1",
