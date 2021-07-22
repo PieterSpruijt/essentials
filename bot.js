@@ -70,7 +70,6 @@ dblist.on("postServers", () => {
 dblist.on("postShards", () => {
   console.log("Shards count posted! (disbots.net)");
 });
-bot.on("debug", console.log)
 bot.on("ready", () => {
   require("./events/client/ready")(bot);
   const Topgg = require('@top-gg/sdk')
