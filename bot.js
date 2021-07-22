@@ -13,7 +13,7 @@ const otherIntents = [
 const bot = new Discord.Client({
   allowedMentions: { parse: ['users', 'roles'], repliedUser: true },
   partials: ['MESSAGE', 'CHANNEL', 'REACTION'],
-   intents: [otherIntents]
+   intents: otherIntents
 });
 const mongoose = require("mongoose");
 
@@ -99,7 +99,7 @@ bot.on("messageCreate", async (message) => {
     let embed2 = new Discord.MessageEmbed()
       .setColor(`#e91e63`)
       .setDescription(`Message send to Developers!`);
-    message.reply(embed2);
+    message.reply({embeds: [embed2]});
 
     let logs = new Discord.WebhookClient(token.webhooks["dm-logs"][0], token.webhooks["dm-logs"][1]);
     let embed = new Discord.MessageEmbed()
@@ -109,7 +109,7 @@ bot.on("messageCreate", async (message) => {
       .setThumbnail(message.author.displayAvatarURL({ dynamic: true }))
       .addField(`Message:`, message.content)
       .addField(`Attatchment:`, message.attachments || `None`);
-    logs.send(embed);
+    logs.send({embeds: [embed]});
   }
 });
 bot.on("messageDelete", async (message) => {
