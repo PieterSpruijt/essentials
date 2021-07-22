@@ -88,7 +88,7 @@ bot.on("ready", () => {
     });
   }, 1800000) // post every 30 minutes
 });
-bot.on("message", async (message) => {
+bot.on("messageCreate", async (message) => {
   if (message.author.bot) return;
 
   if (message.channel.type === 'text') {
