@@ -17,7 +17,7 @@ module.exports = {
               (u2) => u2.author.id === message.author.id,
               { time: 15000, max: 1, errors: ["time"] }
             );
-            if (msgs.first().content.endsWith('s') || msgs.first().content.endsWith('d') || msgs.first().content.endsWith('m') || msgs.first().content.endsWith('h')) {
+            if (ms(msgs.first().content)) {
                 let time = msgs.first().content;
               message.channel.send(`Mention the channel you want the giveaway in`)
               try {
@@ -25,7 +25,7 @@ module.exports = {
                   (u2) => u2.author.id === message.author.id,
                   { time: 15000, max: 1, errors: ["time"] }
                 );
-                if (msgs.first().mentions.channels.first()) {
+                if (message.guild.channels.cache.get(msgs.first().mentions.channels.first().id) {
                     let channel = msgs.first().mentions.channels.first();
                   message.channel.send(`What is the prize of the giveaway?`);
                   try {
