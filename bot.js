@@ -2,7 +2,6 @@ const Discord = require("discord.js");
 const fs = require("fs");
 const config = require("./config.json");
 const prefix = config.prefix;
-const { Intents } = require('discord.js');
 const otherIntents = [
   Discord.Intents.FLAGS.DIRECT_MESSAGES,
   Discord.Intents.FLAGS.GUILDS,
@@ -71,6 +70,7 @@ dblist.on("postServers", () => {
 dblist.on("postShards", () => {
   console.log("Shards count posted! (disbots.net)");
 });
+bot.on("debug", console.log)
 bot.on("ready", () => {
   require("./events/client/ready")(bot);
   const Topgg = require('@top-gg/sdk')
@@ -89,13 +89,12 @@ bot.on("ready", () => {
   }, 1800000) // post every 30 minutes
 });
 bot.on("messageCreate", async (message) => {
-  if (message.author.bot) return;
 
-  if (message.channel.type === 'text') {
+  if (message.channel.type === 'GUILD_TEXT') {
     message.member; //-- GuildMember based
     message.author; //-- User based
     require("./events/guild/message")(bot, message)
-  } else if (message.channel.type == `dm`) {
+  } else if (message.channel.type == `DM`) {
     let embed2 = new Discord.MessageEmbed()
       .setColor(`#e91e63`)
       .setDescription(`Message send to Developers!`);
