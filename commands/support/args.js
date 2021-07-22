@@ -39,27 +39,17 @@ const plans = new Discord.MessageEmbed()
       let Embed = new Discord.MessageEmbed()
         .setDescription(`${bot.info.emojis.normal.cross} You are not allowed to use the args command\n This command is only for the Essentials support team!`)
         .setColor(`#e91e63`);
-    message.channel.send(Embed)
+    message.channel.send({embeds: [Embed]})
     }
     if (userinfo.developer) {
         if (args[0] === `rules`) {
-          message.channel.send(rules);
+          message.channel.send({embeds: [rules]});
         }      
         if (args[0] === `plans`) {
-          message.channel.send(plans);
+          message.channel.send({embeds: [plans]});
         }
         if (args[0] === `reply`) {
-          bot.api.channels[message.channel.id].messages.post({
-            data: {
-               "content": "This is a reply!",
-               "tts": false,
-               message_reference: {
-                  message_id: message.id,
-                  guild_id: message.guild.id,
-                  channel_id: message.channel.id
-               }
-            }
-         })
+          message.reply(`This is a reply`)
         }
   }
 
