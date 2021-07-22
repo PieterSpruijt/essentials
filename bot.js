@@ -12,7 +12,7 @@ const otherIntents = [
 ]
 const bot = new Discord.Client({
   allowedMentions: { parse: ['users', 'roles'], repliedUser: true },
-  partials: ["REACTION", "MESSAGE", "CHANNEL"],
+  partials: ['MESSAGE', 'CHANNEL', 'REACTION'],
    intents: [otherIntents]
 });
 const mongoose = require("mongoose");
