@@ -17,6 +17,6 @@ module.exports = {
     let UserAvatar = User.displayAvatarURL({ dynamic: false, format: 'png' });
     let img = await new DIG.Kiss().getImage(avatar, UserAvatar);
     let attach = new Discord.MessageAttachment(img, "spank.png");;
-    message.channel.send(attach)
+    message.channel.send({attatchments: [attatch]})
   },
 };
