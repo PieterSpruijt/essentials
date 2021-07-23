@@ -7,7 +7,8 @@ const token = require("../../token.json");
 const webhookClient = new Discord.WebhookClient(token.webhooks['new-servers'][0], token.webhooks['new-servers'][1]);
 
 
-module.exports = async (guild, bot) => {
+module.exports = async (guild) => {
+  const bot = this;
   try {
     let newembed = new Discord.MessageEmbed()
       .setTitle(`New Server: "${guild.name}" with id: "${guild.id}\nNow in ${bot.guilds.cache.size} Servers"`)

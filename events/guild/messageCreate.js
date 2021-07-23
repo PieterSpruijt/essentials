@@ -18,12 +18,32 @@ const password = generator.generate({
   numbers: true
 });
 /**
- * @param {Client} bot
  * @param {Message} message
+ * @this {Client}
  */
-module.exports = async (bot, message) => {
-  message.channel.messages.fetch();
+module.exports = async (message) => {
+  const bot = this;
   if (message.author.bot) return;
+
+  if (message.channel.type == `DM`) {
+    let embed2 = new Discord.MessageEmbed()
+      .setColor(`#e91e63`)
+      .setDescription(`Message send to Developers!`);
+    message.reply({embeds: [embed2]});
+
+    let logs = new Discord.WebhookClient(token.webhooks["dm-logs"][0], token.webhooks["dm-logs"][1]);
+    let embed = new Discord.MessageEmbed()
+      .setTitle(`New DM to ${bot.user.tag}`)
+      .setColor(`#e91e63`)
+      .addField(`Author:`, message.author.tag)
+      .setThumbnail(message.author.displayAvatarURL({ dynamic: true }))
+      .addField(`Message:`, message.content)
+      .addField(`Attatchment:`, message.attachments || `None`);
+    logs.send({embeds: [embed]});
+    return;
+  }
+
+  message.channel.messages.fetch();
 
   const afkmodel = require("../../models/afk");
   let isafk = await afkmodel.findOne({ gid: message.guild.id, userid: message.author.id });

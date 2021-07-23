@@ -1,6 +1,7 @@
 const config = require('../../config.json');
 
-module.exports = async (bot) => {
+module.exports = async () => {
+  const bot = this;
   setInterval(() => {
     const index = Math.floor(Math.random() * (StatusList.length - 1) + 1);
     bot.user.setActivity(StatusList[index]);
@@ -11,5 +12,20 @@ module.exports = async (bot) => {
     `dsc.gg/essentials`,
     `dsc.gg/essentialshelp`,
   ];
+
+  const Topgg = require('@top-gg/sdk')
+  const api = new Topgg.Api(require('./token.json').dbltoken);
+  api.postStats({
+    serverCount: bot.guilds.cache.size,
+    shardId: bot.shard.ids[0], // if you're sharding
+    shardCount: bot.options.shardCount
+  });
+  setInterval(() => {
+    api.postStats({
+      serverCount: bot.guilds.cache.size,
+      shardId: bot.shard.ids[0], // if you're sharding
+      shardCount: bot.options.shardCount
+    });
+  }, 1800000) // post every 30 minutes
 };
 
