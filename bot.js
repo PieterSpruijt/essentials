@@ -69,7 +69,9 @@ dblist.on("postShards", () => {
 });
 
 for (const category of fs.readdirSync(__dirname + '/events')) {
-  for (const eventName of fs.readdirSync(__dirname + '/events/' + category)) {
+  const categoryPath = __dirname + '/events/' + category;
+  if (!fs.lstatSync(categoryPath).isDirectory()) continue;
+  for (const eventName of fs.readdirSync(categoryPath)) {
     if (!eventName.endsWith('.js')) continue;
     const eventHandler = require('./events/' + category + '/' + eventName);
 
