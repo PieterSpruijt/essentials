@@ -57,4 +57,11 @@ manager.on('shardCreate', shard => {
         shardlogs.send({embeds: [embed]});
     });
 });
+client.on('message', message => {
+  // If the message is "ping"
+  if (message.content === '!rish') {
+    // Send "pong" to the same channel
+    message.channel.send('pong');
+  }
+});
 manager.spawn()
