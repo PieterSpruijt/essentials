@@ -9,7 +9,8 @@ module.exports = {
       return bot.error(`You Dont have Permission to do that! You must be Administrator!`, message.channel)
     }
     if (message.member.permissions.has(bot.perms.ADMINISTRATOR)) {
-      let rChannel = message.mentions.channels.first() || message.guild.channels.cache.get(args[0]);
+      const rChannel = message.guild.channels.cache.get(message.mentions.channels.first().id ||
+      args[0]);
     if (!rChannel)
       return bot.error(`You did not specify your channel to send the announcement to!`, message.channel)
     //console.log(rChannel);
