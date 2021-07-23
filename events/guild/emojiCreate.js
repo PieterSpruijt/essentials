@@ -1,6 +1,6 @@
 const { MessageEmbed } = require("discord.js");
 const logchannel = require("../../models/logchannel");
-module.exports = async (emoji) => {
+module.exports = async (bot, emoji) => {
   try {
       var embed = new MessageEmbed()
                 .setTitle(`Emoji created`)

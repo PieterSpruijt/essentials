@@ -1,6 +1,6 @@
 const { MessageEmbed } = require("discord.js");
 const logchannel = require("../../models/logchannel");
-module.exports = async (guild, user) => {
+module.exports = async (bot, guild, user) => {
   try {
       var embed = new MessageEmbed()
                 .setAuthor(`Member unbanned`, `${user.avatarURL({ size: 4096 })}`)

@@ -5,7 +5,7 @@ const ReactionModel = require("../../models/ReactionRole");
  * @param {MessageReaction} reaction
  * @param {User} user
  */
-module.exports = (reaction, user) => {
+module.exports = (bot, reaction, user) => {
   let member = reaction.message.guild.members.cache.get(user.id);
   ReactionModel.findOne(
     {

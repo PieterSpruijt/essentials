@@ -4,8 +4,7 @@ const token = require("../../token.json");
 const webhookClient = new Discord.WebhookClient(token.webhooks['kick-logs'][0], token.webhooks['kick-logs'][1]);
 
 
-module.exports = async (guild) => {
-  const bot = this;
+module.exports = async (bot, guild) => {
   try {
     let newembed = new Discord.MessageEmbed()
       .setTitle(`Removed of server: "${guild.name}" with id: "${guild.id}"\nNow in ${bot.guilds.cache.size} Servers`)

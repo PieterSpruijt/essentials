@@ -1,6 +1,6 @@
 const { MessageEmbed } = require("discord.js");
 const logchannel = require("../../models/logchannel");
-module.exports = async (channel) => {
+module.exports = async (bot, channel) => {
   try {
     let types = {
                 text: 'Text channel',

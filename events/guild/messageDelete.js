@@ -1,7 +1,7 @@
 const { MessageEmbed } = require("discord.js");
 const logchannel = require("../../models/logchannel");
 const userdb = require("../../models/userdb");
-module.exports = async (message) => {
+module.exports = async (bot, message) => {
   try {
     if (message.author.bot) return;
     let userinfo2 = await userdb.findOne({ userid: message.author.id });

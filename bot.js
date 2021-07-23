@@ -80,7 +80,7 @@ for (const category of fs.readdirSync(__dirname + '/events')) {
     if (!eventName.endsWith('.js')) continue;
     const eventHandler = require('./events/' + category + '/' + eventName);
 
-    bot.on(eventName.split('.')[0], eventHandler.bind(bot));
+    bot.on(eventName.split('.')[0], eventHandler.bind(null, bot));
   }
 }
 

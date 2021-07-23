@@ -1,6 +1,6 @@
 const { MessageEmbed } = require("discord.js");
 const logchannel = require("../../models/logchannel");
-module.exports = async (oldChannel, newChannel) => {
+module.exports = async (bot, ldChannel, newChannel) => {
   try {
       let guildsChannel = newChannel.guild;
             if (!guildsChannel || !guildsChannel.available) return;

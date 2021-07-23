@@ -1,6 +1,6 @@
 const { MessageEmbed } = require("discord.js");
 const logchannel = require("../../models/logchannel");
-module.exports = async (role) => {
+module.exports = async (bot, role) => {
   try {
       var embed = new MessageEmbed()
                 .setTitle(`Role created`)

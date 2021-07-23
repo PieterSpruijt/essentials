@@ -18,11 +18,11 @@ const password = generator.generate({
   numbers: true
 });
 /**
+ * @param {Client}
  * @param {Message} message
- * @this {Client}
+ 
  */
-module.exports = async (message) => {
-  const bot = this;
+module.exports = async (bot, message) => {
   if (message.author.bot) return;
 
   if (message.channel.type == `DM`) {

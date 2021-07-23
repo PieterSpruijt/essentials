@@ -1,7 +1,6 @@
 const config = require('../../config.json');
 
-module.exports = async () => {
-  const bot = this;
+module.exports = async (bot) => {
   setInterval(() => {
     const index = Math.floor(Math.random() * (StatusList.length - 1) + 1);
     bot.user.setActivity(StatusList[index]);

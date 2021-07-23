@@ -1,7 +1,7 @@
 const { MessageEmbed } = require("discord.js");
 const logchannel = require("../../models/logchannel");
 const userdb = require("../../models/userdb");
-module.exports = async (oldMessage, newMessage) => {
+module.exports = async (bot, oldMessage, newMessage) => {
   try {
     if (oldMessage.content === newMessage.content) {
                 return;
