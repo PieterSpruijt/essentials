@@ -18,10 +18,10 @@ const password = generator.generate({
   numbers: true
 });
 /**
- * @param {Client}
+ * @param {Client} bot
  * @param {Message} message
  
- */
+ **/
 module.exports = async (bot, message) => {
   if (message.author.bot) return;
 
