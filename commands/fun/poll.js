@@ -8,9 +8,8 @@ module.exports = {
   run: async (bot, message, args, userinfo) => {
     if (!message.member.permissions.has(bot.perms.ADMINISTRATOR))
       return bot.error(`You Dont have Permission to do that! You must be Administrator!`, message.channel)
-    const channel =
-      message.mentions.channels.first() ||
-      message.guild.channels.cache.get(args[0]);
+    const channel = message.guild.channels.cache.get(message.mentions.channels.first().id ||
+      args[0]);
     if (!channel) {
       return bot.error(`You did not mention / give the id of your channel!`, message.channel)
     }
