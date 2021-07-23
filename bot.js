@@ -14,6 +14,7 @@ const bot = new Discord.Client({
   partials: ['MESSAGE', 'CHANNEL', 'REACTION'],
    intents: otherIntents
 });
+this === bot;
 const mongoose = require("mongoose");
 
 
