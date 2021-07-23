@@ -14,7 +14,7 @@ module.exports = async () => {
   ];
 
   const Topgg = require('@top-gg/sdk')
-  const api = new Topgg.Api(require('./token.json').dbltoken);
+  const api = new Topgg.Api(require('../../token.json').dbltoken);
   api.postStats({
     serverCount: bot.guilds.cache.size,
     shardId: bot.shard.ids[0], // if you're sharding
