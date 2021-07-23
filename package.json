@@ -1,5 +1,5 @@
 {
-  "name": "Essentials",
+  "name": "essentials",
   "version": "1.9.1",
   "description": "The essentials bot on Discord!",
   "main": "index.js",
