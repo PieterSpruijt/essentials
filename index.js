@@ -57,4 +57,5 @@ manager.on('shardCreate', shard => {
         shardlogs.send({embeds: [embed]});
     });
 });
+
 manager.spawn()
