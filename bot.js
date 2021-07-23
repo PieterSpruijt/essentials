@@ -68,6 +68,10 @@ dblist.on("postShards", () => {
   console.log("Shards count posted! (disbots.net)");
 });
 
+const eventsDir = __dirname + '/events';
+if (!fs.existsSync(eventsDir) || !fs.lstatSync(eventsDir).isDirectory())
+  throw new Error('Could not find events directory! (should be in "./events")');
+  
 for (const category of fs.readdirSync(__dirname + '/events')) {
   const categoryPath = __dirname + '/events/' + category;
   if (!fs.lstatSync(categoryPath).isDirectory()) continue;
