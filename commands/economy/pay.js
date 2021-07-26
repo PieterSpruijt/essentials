@@ -15,7 +15,7 @@ module.exports = {
     if (User === message.author) return bot.error(`You can't give yourself 🍣!`, message.channel)
     if (!User) return bot.error(`You did not specify an user to send 🍣 to!`, message.channel);
     if (User.bot) return bot.error(`You can't give bots 🍣!`, message.channel);
-    if (!parseInt(args[1])) return bot.error(`You did not specify a correct amount of 🍣!`, message.channel);
+    if (!(parseInt(args[1]) > 0)) return bot.error(`You did not specify a correct amount of 🍣!`, message.channel);
     var userData = await money.findOne({gid: message.guild.id, userid: message.author.id});
     if (!userData) return bot.error(`You don't have any 🍣!`, message.channel);
     if (userData.hand <= parseInt(args[1])) return bot.error(`You don't have enough 🍣 in your hand!`, message.channel);
