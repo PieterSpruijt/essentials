@@ -6,12 +6,9 @@ module.exports = {
   category: "utility",
   usage: "`mcstatus [ip]`",
   run: async (bot, message, args, userinfo) => {
-    let Embed2 = new MessageEmbed()
-        .setDescription(`${bot.info.emojis.normal.cross} | You did not specify a ip! | \`mcstatus [ip]\``)
-        .setColor(userinfo.color);
-    if(!args[0]) return message.channel.send(Embed2);
+    if(!args[0]) return bot.error(`You did not specify a ip!`, message.channel);
     status(args[0], 25565, response => {
-      if (response.players.max == 0) return message.channel.send(Embed2);
+      if (response.players.max == 0) return bot.error(`You did not specify a ip!`, message.channel);
       let Embed = new MessageEmbed();
           Embed.setColor(userinfo.color)
           Embed.setTitle(args[0])
