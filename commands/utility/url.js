@@ -13,7 +13,7 @@ module.exports = {
           let Embed3 = new MessageEmbed()
           .setDescription(res)
           .setColor(userinfo.color);
-          message.channel.send(Embed3)
+          message.channel.send({embeds: [Embed3]})
         });
       }
       if (args[1]) {
@@ -21,7 +21,7 @@ module.exports = {
           let Embed3 = new MessageEmbed()
           .setDescription(res)
           .setColor(userinfo.color);
-          message.channel.send(Embed3)
+          message.channel.send({embeds: [Embed3]})
       });
       }
     
