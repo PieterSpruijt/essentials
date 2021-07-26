@@ -31,7 +31,7 @@ module.exports = {
     .setTitle(`Afk users:`)
     .setDescription(content)
     .setColor(userinfo.color);
-    message.channel.send(embed)
+    message.channel.send({embeds: [embed]})
 
   },
 };
