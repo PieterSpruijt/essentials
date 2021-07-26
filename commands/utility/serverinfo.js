@@ -113,6 +113,6 @@ let region = {
                     value: message.guild.premiumSubscriptionCount || '0',
                     inline: true
                 },)
-        message.channel.send(embed);
+        message.channel.send({embeds: [embed]});
   },
 };
