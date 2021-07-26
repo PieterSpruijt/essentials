@@ -19,7 +19,7 @@ module.exports = {
           Embed. setThumbnail(`https://eu.mc-api.net/v3/server/favicon/${args[0]}`)
           Embed.addField(`Online:`, response.online)
           Embed.addField(`Players online:`, `${response.players.now}/${response.players.max}`)
-          message.channel.send(Embed);
+          message.channel.send({embeds: [Embed]});
   })
   },
 };
