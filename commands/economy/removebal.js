@@ -15,7 +15,7 @@ module.exports = {
     let User = message.mentions.users.first() || bot.users.cache.get(args[0]);
     if (!User) return bot.error(`You did not specify an user!`, message.channel);
     if (User.bot) return bot.error(`Bots can't have  🍣!`, message.channel);
-    if (!parseInt(args[1])) return bot.error(`You did not specify a correct amount of 🍣!`, message.channel);
+    if (!(parseInt(args[1]) > 0)) return bot.error(`You did not specify a correct amount of 🍣!`, message.channel);
     var userData = await money.findOne({gid: message.guild.id, userid: User.id});
     if (!userData) {
       message.channel.send(`This user has no balance!`);
