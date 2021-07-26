@@ -17,7 +17,7 @@ module.exports = {
     .setColor(userinfo.color)
     .setTitle(`Password generator`)
     .addField(`Password:`, '```' + password +  '```')
-    message.author.send(embed).catch(e => {})
+    message.author.send({embeds: [embed]}).catch(e => {})
     message.channel.send(`I send you a password in DM, make sure that you have your DM's open!`)
   },
 };
