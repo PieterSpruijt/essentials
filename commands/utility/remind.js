@@ -22,7 +22,7 @@ module.exports = {
     const errorembed = new Discord.MessageEmbed()
       .setColor(userinfo.color)
       .setDescription(`Something went wrong!`);
-    const embedmessage = await message.channel.send(embed);
+    const embedmessage = await message.channel.send({embeds: [embed]});
     const m = await message.channel.send(`For how long is the reminder?`);
     try {
       let e = await message.channel.awaitMessages(
@@ -41,7 +41,7 @@ module.exports = {
             { name: `Message:`, value: `${bot.info.emojis.animated.loading} | Loading` },
           );
         e.first().delete().catch(e => { });
-        embedmessage.edit(embed);
+        embedmessage.edit({embeds: [embed]});
         m.edit(`To which channels must the reminder be send? (mention/id/dm/this)`);
         try {
           let e = await message.channel.awaitMessages(
@@ -63,13 +63,13 @@ module.exports = {
             channel = e.first().mentions.channels.first().id;
             if (!channel.permissionsFor(message.author.id).has(`SEND_MESSAGES`, false)) {
               e.first().delete().catch(e => { });
-              embedmessage.edit(errorembed);
+              embedmessage.edit({embeds: [errorembed]});
               return m.edit(`You don't have access to chat is that channel!`);
             }
 
           } else {
             e.first().delete().catch(e => { });
-            embedmessage.edit(errorembed);
+            embedmessage.edit({embeds: [errorembed]});
             return m.edit(`I can't find that channel!`);
           }
           e.first().delete().catch(e => { });
@@ -88,7 +88,7 @@ module.exports = {
               { name: `Channel:`, value: `${bot.info.emojis.normal.check} | ${mention}` },
               { name: `Message:`, value: `${bot.info.emojis.animated.loading} | Loading` },
             );
-          embedmessage.edit(embed);
+          embedmessage.edit({embeds: [embed]});
           m.edit(`What is the message to remind?`);
           try {
             let e = await message.channel.awaitMessages(
@@ -117,7 +117,7 @@ module.exports = {
                   { name: `Channel:`, value: `${bot.info.emojis.normal.check} | ${mention}` },
                   { name: `Message:`, value: `${bot.info.emojis.normal.check} | ${text}` },
                 );
-              embedmessage.edit(embed);
+              embedmessage.edit({embeds: [embed]});
               m.delete();
               e.first().delete().catch(e => { });
 
@@ -142,28 +142,28 @@ module.exports = {
 
             } else {
               e.first().delete().catch(e => { });
-              embedmessage.edit(errorembed);
+              embedmessage.edit({embeds: [errorembed]});
               return m.edit(`You did not specify a correct message!`);
             }
 
           } catch (e) {
-            embedmessage.edit(errorembed);
+            embedmessage.edit({embeds: [errorembed]});
             return m.edit(`You did not answer!`);
           }
 
         } catch (e) {
-          embedmessage.edit(errorembed);
+          embedmessage.edit({embeds: [errorembed]});
           return m.edit(`You did not answer!`);
         }
 
       } else {
         e.first().delete().catch(e => { });
-        embedmessage.edit(errorembed);
+        embedmessage.edit({embeds: [errorembed]});
         return m.edit(`You did not specify your time correct!`);
       }
 
     } catch (e) {
-      embedmessage.edit(errorembed);
+      embedmessage.edit({embeds: [errorembed]});
       return m.edit(`You did not answer!`);
     }
 
