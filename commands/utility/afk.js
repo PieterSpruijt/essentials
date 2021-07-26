@@ -19,6 +19,6 @@ module.exports = {
     });
     newData.save();
     message.member.setNickname(`[AFK] ` + message.member.displayName).catch(e => {});
-    message.channel.send(`<@${User.id}>`, {embed: {description: ` Set your afk: ${text}`, color: userinfo.color}});
+    message.channel.send(`<@${User.id}>`, {embeds: [{description: ` Set your afk: ${text}`, color: userinfo.color}]});
   },
 };
