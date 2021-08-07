@@ -25,6 +25,6 @@ module.exports = {
 
     let img = await new DIG.Podium().getImage(User1Avatar, User2Avatar, User3Avatar, User1.tag, User2.tag, User3.tag);
     let attach = new Discord.MessageAttachment(img, "podium.png");;
-    message.channel.send(attach)
+    message.channel.send({files: [attach]})
   },
 };
