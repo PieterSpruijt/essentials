@@ -18,6 +18,6 @@ module.exports = {
     let UserAvatar = User.displayAvatarURL({ dynamic: false, format: 'png' });
     let img = await new DIG.Wanted().getImage(UserAvatar, `€`);
     let attach = new Discord.MessageAttachment(img, "wanted.png");;
-    message.channel.send({attatchments: [attatch]})
+    message.channel.send({files: [attatch]})
   },
 };
