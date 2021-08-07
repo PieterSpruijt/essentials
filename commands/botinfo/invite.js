@@ -4,15 +4,14 @@ module.exports = {
   name: "invite",
   description: "Make a invite for this server",
   category: "botinfo",
-  usage: "`invite`",
-  run: async (bot, message, args, userinfo) => {
+  run: async (bot, interaction, userinfo) => {
     let Embed = new Discord.MessageEmbed()
         .setTitle(`Invite Essentials!`)
-        .setAuthor(bot.info.embed.Botname, bot.info.embed.profielfoto, bot.info.embed.website)
-        .setThumbnail(bot.info.embed.profielfoto)
-        .setDescription(bot.config.inviteurl)
-        .setFooter(bot.info.embed.footer_name, bot.info.embed.footer_foto)
+        .setAuthor(bot.config.botName, bot.config.embeds.footer_photo, bot.config.website)
+        .setThumbnail(bot.config.embeds.footer_photo)
+        .setDescription(bot.config.botInvite)
+        .setFooter(bot.config.embeds.footer_name, bot.config.embeds.footer_photo)
         .setColor(userinfo.color);
-    message.channel.send({embeds: [Embed]});
+    interaction.editReply({embeds: [Embed]});
   },
 };
