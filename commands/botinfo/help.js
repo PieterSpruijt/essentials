@@ -5,7 +5,7 @@ module.exports = {
   description: "Get help & list with all commands.",
   category: "botinfo",
   usage: "`help <command>`",
-  aliases: ["commands"],
+  private: false,
   run: async (bot, interaction, userinfo) => {
     let Embed = new MessageEmbed();
 	Embed.setColor(userinfo.color)

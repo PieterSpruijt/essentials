@@ -7,6 +7,7 @@ module.exports = {
   name: "botinfo",
   description: "Get all info about this bot!",
   category: "botinfo",
+  private: false,
   run: async (bot, interaction, userinfo) => {
     var totalGuilds;
     var totalMembers;

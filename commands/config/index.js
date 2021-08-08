@@ -16,10 +16,17 @@ module.exports = {
   name: "settings",
   description: "Change bot settings!",
   category: "config",
+  private: true,
   commandOptions: [
     {
       "name": "delguilddata",
       "description": "Delete all saved data of the guild!",
+      "type": 1,
+
+    },
+    {
+      "name": "cleareconomy",
+      "description": "Delete all saved data of the economy of this server!",
       "type": 1,
 
     },
@@ -43,10 +50,24 @@ module.exports = {
       "type": 1,
       options: [
         {
-        type: 5,
-        name: `value`,
-        description: `The valueto set to!`,
-        required: true
+          type: 5,
+          name: `value`,
+          description: `The valueto set to!`,
+          required: true
+        }
+      ]
+
+    },
+    {
+      "name": "economy",
+      "description": "Enable/disable economy",
+      "type": 1,
+      options: [
+        {
+          type: 5,
+          name: `value`,
+          description: `The valueto set to!`,
+          required: true
         }
       ]
 
@@ -57,10 +78,10 @@ module.exports = {
       "type": 1,
       options: [
         {
-        type: 3,
-        name: `hex`,
-        description: `Hex value of the color!`,
-        required: true
+          type: 3,
+          name: `hex`,
+          description: `Hex value of the color!`,
+          required: true
         }
       ]
 
@@ -69,7 +90,39 @@ module.exports = {
   run: async (bot, interaction, userinfo) => {
 
     let command = interaction.options._subcommand;
-    if (command === `logchannel`) {
+    if (command === `economy`) {
+      if (!interaction.member.permissions.has(bot.perms.ADMINISTRATOR)) return bot.error(`You Dont have Permission to do that! You must be Administrator!`, bot, interaction);
+      var storedSettings = await model10.findOne({ gid: interaction.guild.id });
+      if (!storedSettings) {
+        // If there are no settings stored for this guild, we create them and try to retrive them again.
+        const newSettings = new model10({
+          gid: interaction.guild.id,
+          levels: true,
+          economy: false
+        });
+        await newSettings.save().catch(() => { });
+        storedSettings = await model10.findOne({ gid: interaction.guild.id });
+      }
+      model10.findOne(
+        { gid: interaction.guild.id },
+        async (err, data) => {
+          if (err) throw err;
+          data.economy = interaction.data.options[0].value
+          data.save();
+        }
+      );
+      await interaction.editReply(`${interaction.data.options[0].value ? `Enabled` : `Disabled`} Economy!`);
+
+    } else if (command === `cleareconomy`) {
+
+      if (!interaction.member.permissions.has(bot.perms.ADMINISTRATOR)) return bot.error(`You Dont have Permission to do that! You must be Administrator!`, bot, interaction);
+      var Data = await model.find({ gid: interaction.guild.id });
+      if (!Data) return bot.error(`There is no guild database!`, bot, interaction);
+      let size = Data.length;
+      var deleted = await model.deleteMany({ gid: interaction.guild.id });
+      await interaction.editReply(`Successfull deleted ${size} user profiles of this server!`);;
+
+    } else if (command === `logchannel`) {
       if (!interaction.member.permissions.has(bot.perms.ADMINISTRATOR)) return bot.error(`You Dont have Permission to do that! You must be Administrator!`, bot, interaction);
       var storedSettings = await logchannel.findOne({ gid: interaction.guild.id });
       if (!storedSettings) {
@@ -84,7 +137,7 @@ module.exports = {
       }
       if (!interaction.data.options[0]) return await interaction.editReply({ content: `The logchannel for ${interaction.guild.name} is ${storedSettings.logchannel != `None` ? `<#` + storedSettings.logchannel + `>` : `None`}`, ephemeral: true });
       const Channel = interaction.data.options[0].channel;
-      
+
 
       logchannel.findOne(
         { gid: interaction.guild.id },
@@ -95,7 +148,7 @@ module.exports = {
           data.save();
         }
       );
-      interaction.editReply({ content: `${bot.config.emojis.normal.check} | Set the logchannel to <#${Channel.id}>!`, ephemeral: true });
+      await interaction.editReply({ content: `${bot.config.emojis.normal.check} | Set the logchannel to <#${Channel.id}>!`, ephemeral: true });
     } else if (command === `delguilddata`) {
       if (!interaction.member.permissions.has(bot.perms.ADMINISTRATOR)) return bot.error(`You Dont have Permission to do that! You must be Administrator!`, bot, interaction);
       let row = new Discord.MessageActionRow()
@@ -149,53 +202,53 @@ module.exports = {
     } else if (command === `snipe`) {
       let value = interaction.data.options[0].value
       let target = interaction.member.user;
-    let userinfo2 = await userdb.findOne({ userid: target.id });
-    if (!userinfo2) {
-      // If there are no settings stored for this guild, we create them and try to retrive them again.
-      newSettings = new userdb({
-        userid: target.id,
-        developer: false,
-        banned: false,
-        color: `#e91e63`,
-        snipe: true,
-      });
-      await newSettings.save().catch(()=>{});
-      userinfo2 = await userdb.findOne({ userid: target.id });
-      return await interaction.editReply({embeds: [{description: `I succesfully saved the new user, try your command again`, color: `GREEN`}], ephemeral: true});
-    }
+      let userinfo2 = await userdb.findOne({ userid: target.id });
+      if (!userinfo2) {
+        // If there are no settings stored for this guild, we create them and try to retrive them again.
+        newSettings = new userdb({
+          userid: target.id,
+          developer: false,
+          banned: false,
+          color: `#e91e63`,
+          snipe: true,
+        });
+        await newSettings.save().catch(() => { });
+        userinfo2 = await userdb.findOne({ userid: target.id });
+        return await interaction.editReply({ embeds: [{ description: `I succesfully saved the new user, try your command again`, color: `GREEN` }], ephemeral: true });
+      }
       if (value === true) {
         userdb.findOne(
           { userid: target.id },
           async (err, data) => {
             if (err) throw err;
-              data[value] = true;
-              data.save();
+            data[value] = true;
+            data.save();
           }
         );
-        await interaction.editReply({embeds: [{description: `${bot.config.emojis.normal.check} You turned **Snipe** on`, color: `#e91e63`}], ephemeral: true});
+        await interaction.editReply({ embeds: [{ description: `${bot.config.emojis.normal.check} You turned **Snipe** on`, color: `#e91e63` }], ephemeral: true });
       } else if (value === false) {
         userdb.findOne(
           { userid: target.id },
           async (err, data) => {
             if (err) throw err;
-              data[value] = false;
-              data.save();
+            data[value] = false;
+            data.save();
           }
         );
-        await interaction.editReply({embeds: [{description: `${bot.config.emojis.normal.check} You turned **Snipe** off`, color: `#e91e63`}], ephemeral: true});
+        await interaction.editReply({ embeds: [{ description: `${bot.config.emojis.normal.check} You turned **Snipe** off`, color: `#e91e63` }], ephemeral: true });
       }
 
     } else if (command === `color`) {
-      if (!isHexcolor(interaction.data.options[0].value)) return await interaction.editReply({embeds: [{description: `${bot.config.emojis.normal.cross} You did not specify an hex color!`, color: `#e91e63`}], ephemeral: true});
-        userdb.findOne(
-          { userid: interaction.member.user.id },
-          async (err, data) => {
-            if (err) throw err;
-              data.color = interaction.data.options[0].value;
-              data.save();
-          }
-        );
-        await interaction.editReply({embeds: [{description: `${bot.config.emojis.normal.check} Changed ${interaction.data.options[0].value} to your default embed color`, color: `#e91e63`}], ephemeral: true});  
+      if (!isHexcolor(interaction.data.options[0].value)) return await interaction.editReply({ embeds: [{ description: `${bot.config.emojis.normal.cross} You did not specify an hex color!`, color: `#e91e63` }], ephemeral: true });
+      userdb.findOne(
+        { userid: interaction.member.user.id },
+        async (err, data) => {
+          if (err) throw err;
+          data.color = interaction.data.options[0].value;
+          data.save();
+        }
+      );
+      await interaction.editReply({ embeds: [{ description: `${bot.config.emojis.normal.check} Changed ${interaction.data.options[0].value} to your default embed color`, color: `#e91e63` }], ephemeral: true });
 
     }
 

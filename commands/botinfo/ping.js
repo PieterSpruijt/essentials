@@ -4,6 +4,7 @@ module.exports = {
     name: "ping",
     category: "info",
     description: "Returns latency and API ping",
+    private: false,
     run: async (bot, interaction, userinfo) => {
         const embed = new Discord.MessageEmbed()
         .setColor(userinfo.color)

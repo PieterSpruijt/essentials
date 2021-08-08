@@ -8,7 +8,6 @@ module.exports = async function (bot, interaction) {
     if (interaction.isButton()) {
 
     } else if (interaction.isCommand()) {
-        await interaction.deferReply({ephemeral: true});
         interaction.data = [];
         interaction.data.options = interaction.options._hoistedOptions
 
@@ -26,7 +25,13 @@ module.exports = async function (bot, interaction) {
             return interaction.editReply({ embeds: [{ description: `${bot.emojis.normal.alert} | ooh ooh, You are banned by the developers of this bot!!`, color: "#e91e63" }], ephemeral:true });
         }
         const errorlog = new Discord.WebhookClient({ id: bot.config.webhooks["error-log"][0], token: bot.config.webhooks["error-log"][1] });
-        bot.commands.get(interaction.commandName).run(bot, interaction, userinfo).catch(err => {
+        const command = bot.commands.get(interaction.commandName)
+        if (command.private) {
+            await interaction.deferReply({ephemeral: true});
+        } else {
+            await interaction.deferReply({ephemeral: false});
+        }
+        command.run(bot, interaction, userinfo).catch(err => {
             const password = generator.generate({
                 length: 10,
                 numbers: true
@@ -37,6 +42,7 @@ module.exports = async function (bot, interaction) {
                 .addField(`Command`, interaction.commandName)
                 .addField(`ERROR`, `\`\`\`${err}\`\`\``)
                 .addField(`STACK`, `\`\`\`${err.stack}\`\`\``);
+                console.log(err)
             errorlog.send({ embeds: [embed] }).catch(error => { })
             interaction.editReply({ embeds: [{ color: userinfo.color ,title: `ERROR`, description: `An error has occurred\nSend this to the developers: \`${password}\`You can contact the developers [by joining the support server](${bot.config.support_server})` }], ephemeral: true });
         });

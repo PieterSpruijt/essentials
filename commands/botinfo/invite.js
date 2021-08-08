@@ -4,6 +4,7 @@ module.exports = {
   name: "invite",
   description: "Make a invite for this server",
   category: "botinfo",
+  private: false,
   run: async (bot, interaction, userinfo) => {
     let Embed = new Discord.MessageEmbed()
         .setTitle(`Invite Essentials!`)
