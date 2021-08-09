@@ -2,6 +2,17 @@ const { MessageEmbed } = require("discord.js");
 const lyricsFinder = require("lyrics-finder");
 
 module.exports = {
+  name: `lyrics`,
+  description: `Get lyrics of now playing music!`,
+  private: false,
+  commandOptions: [
+    {
+      type: 3,
+      name: "song",
+      description: "song name or yt url",
+      required: false
+    },
+  ],
   run: async (bot, interaction, userinfo) => {
     if (!userinfo.staff) return bot.error(`You Dont have Permission to do that!`, bot, interaction);
     let lyrics = null;
@@ -22,7 +33,7 @@ module.exports = {
 
       if (lyricsEmbed.description.length >= 2048)
         lyricsEmbed.description = `${lyricsEmbed.description.substr(0, 2045)}...`;
-        return await interaction.editRely({embeds: [lyricsEmbed]});
+      return await interaction.editRely({ embeds: [lyricsEmbed] });
     }
     if (!queue) return bot.error(`I can't find the lyrics!`, bot, interaction)
 
@@ -42,7 +53,7 @@ module.exports = {
 
     if (lyricsEmbed.description.length >= 2048)
       lyricsEmbed.description = `${lyricsEmbed.description.substr(0, 2045)}...`;
-      await interaction.editRely({embeds: [lyricsEmbed]});
+    await interaction.editRely({ embeds: [lyricsEmbed] });
   },
 };
 

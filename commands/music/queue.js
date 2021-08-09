@@ -1,6 +1,9 @@
 const { MessageEmbed } = require('discord.js')
 
 module.exports = {
+  name: `queue`,
+  description: `Get music queue!`,
+  private: false,
   run: async (bot, interaction, userinfo) => {
     const channel = interaction.member.voice.channel;
     if (!channel) return bot.error(`You should join a voice channel before using this command!`, bot, interaction);
@@ -27,7 +30,7 @@ module.exports = {
       .addField("Text Channel", `<#${queue.textChannel.id}>`, true)
       .addField("Voice Channel", `<#${queue.voiceChannel.id}>`, true)
       .setFooter(`Currently Server Volume is ${queue.volume}/100 | Loop: ${queue.loop}`);
-      await interaction.editRely({embeds: [embed]});
+      await interaction.editReply({embeds: [embed]});
   },
 };
 

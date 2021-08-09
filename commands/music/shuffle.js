@@ -1,4 +1,7 @@
 module.exports = {
+  name: `shuffle`,
+  description: `Shuffle the queue!`,
+  private: false,
   run: async (bot, interaction, userinfo) => {
     const channel = interaction.member.voice.channel;
     if (!channel) return bot.error(`You should join a voice channel before using this command!`, bot, interaction)

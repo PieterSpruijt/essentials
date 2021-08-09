@@ -1,4 +1,15 @@
 module.exports = {
+  name: `remove`,
+  description: `Remove music from queue!`,
+  private: false,
+  commandOptions: [
+    {
+      type: 10,
+      name: "number",
+      description: "Number in queue to remove",
+      required: true
+    },
+  ],
   run: async (bot, interaction, userinfo) => {
     const queue = bot.queue.get(interaction.guild.id);
     if (!queue) return bot.error("There is no queue.", bot, interaction);

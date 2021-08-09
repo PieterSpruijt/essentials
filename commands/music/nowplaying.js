@@ -1,5 +1,8 @@
 const { MessageEmbed } = require("discord.js");
 module.exports = {
+  name: `nowplaying`,
+  description: `Get current song!`,
+  private: false,
   run: async (bot, interaction, userinfo) => {
     if (!userinfo.staff) return bot.error(`You Dont have Permission to do that!`, bot, interaction);
     const serverQueue = bot.queue.get(interaction.guild.id);

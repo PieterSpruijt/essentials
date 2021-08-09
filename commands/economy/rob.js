@@ -2,6 +2,17 @@ const Discord = require('discord.js');
 const money = require('../../models/economy');
 
 module.exports = {
+  name: `rob`,
+  description: `Rob an user!`,
+  private: false,
+  commandOptions: [
+    {
+      type: 6,
+      name: `user`,
+      description: `The user to rob`,
+      required: true
+    }
+  ],
   timeout: 3600000,
   run: async (bot, interaction, userinfo) => {
     const GuildSettings = require("../../models/settings");

@@ -3,6 +3,17 @@ const money = require('../../models/economy');
 var slotItems = ["🍇", "🎰", "🍌", "🍉", "🍋", "💸", "🍒"];
 
 module.exports = {
+  name: `slots`,
+  description: `Play a game of slots!`,
+  private: false,
+  commandOptions: [
+    {
+      type: 10,
+      name: `amount`,
+      description: `Amount of coints to use`,
+      required: true
+    }
+  ],
   timeout: 5000,
   run: async (bot, interaction, userinfo) => {
     const GuildSettings = require("../../models/settings");

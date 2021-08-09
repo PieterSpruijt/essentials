@@ -3,6 +3,17 @@ const ytdl = require('ytdl-core-discord');
 const discord = require('discord.js')
 const { VoiceConnectionStatus, entersState, AudioPlayerStatus, createAudioResource, createAudioPlayer, NoSubscriberBehavior, joinVoiceChannel, StreamType } = require('@discordjs/voice');
 module.exports = {
+  name: `play`,
+  description: `Play music`,
+  private: false,
+  commandOptions: [
+    {
+      type: 3,
+      name: "song",
+      description: "Name of the song or youtube url",
+      required: true
+    },
+  ],
   run: async (bot, interaction, userinfo) => {
     let channel = interaction.member.voice.channel;
     if (!channel) return bot.error(`You need to join a voice channel to play a music!`, bot, interaction);

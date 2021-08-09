@@ -1,5 +1,16 @@
 
 module.exports = {
+  name: `volume`,
+  description: `Set the volume of the music music!`,
+  private: false,
+  commandOptions: [
+    {
+      type: 10,
+      name: "number",
+      description: "Volume to set to",
+      required: false
+    }
+  ],
   run: async (bot, interaction, userinfo) => {
     const channel = interaction.member.voice.channel;
     if (!channel) return bot.error('You should join a voice channel before using this command!', bot, interaction);

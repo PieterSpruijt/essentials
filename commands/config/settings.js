@@ -14,7 +14,7 @@ const isHexcolor = require('is-hexcolor')
 
 module.exports = {
   name: "settings",
-  description: "Change bot settings!",
+  description: "Change bot/user settings!",
   category: "config",
   private: true,
   commandOptions: [
