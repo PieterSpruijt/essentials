@@ -8,7 +8,7 @@ module.exports = {
   website: "",
   botName: "",
   support_server: "",
-  owner: "PieterSpruijt#5136",
+  owner: "",
   developers: "",
 
   webhooks: {
