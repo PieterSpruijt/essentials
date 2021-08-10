@@ -1,1 +1,0 @@
-### Essentials Discord Bot 
