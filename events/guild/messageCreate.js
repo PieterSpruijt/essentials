@@ -30,18 +30,17 @@ module.exports = async function (bot, message) {
     //no DM
     message.channel.messages.fetch();
 
-    const afkmodel = require("../../models/afk");
     let isafk = await afkmodel.findOne({ gid: message.guild.id, userid: message.author.id });
     if (isafk) {
         await afkmodel.deleteOne({ gid: message.guild.id, userid: message.author.id });
         message.channel.send(`<@${message.author.id}>, Welcome back! I removed you afk.`).then(async (m) => {
             setTimeout(() => {
-                m.delete().catch(e => { });
+                m.delete().catch(() => { });
             }, 5000);
         })
         if (message.member.displayName.startsWith(`[AFK] `)) {
             let name = message.member.displayName.replace(`[AFK] `, ``);
-            message.member.setNickname(name).catch(e => { });
+            message.member.setNickname(name).catch(() => { });
         }
     }
     message.mentions.users.forEach(async (u) => {
@@ -114,14 +113,14 @@ module.exports = async function (bot, message) {
                         data.save();
                     }
                 ).then(async () => {
-                    message.channel.send(`**GG** <@${message.author.id}>, you are now level **${xp.level + 1}**`).catch(err => { })
+                    message.channel.send(`**GG** <@${message.author.id}>, you are now level **${xp.level + 1}**`).catch(() => { })
                     const rewards = require("../../models/lvlreward");
                     var rewardlist = await rewards.find({ gid: message.guild.id, level: xp.level + 1 });
                     if (rewardlist) {
                         rewardlist.forEach(r => {
                             let role = message.guild.roles.cache.get(r.role);
                             if (role) {
-                                message.member.roles.add(role).catch(e => { });
+                                message.member.roles.add(role).catch(() => { });
                             }
 
                         })

@@ -9,6 +9,7 @@ module.exports = {
     if (!channel) return bot.error(`You should join a voice channel before using this command!`, bot, interaction);
     const queue = bot.queue.get(interaction.guild.id)
     let np;
+    let thumbnail;
     if (!queue) {
       return bot.error(`There is nothing in queue!`, bot, interaction);
     } else {
@@ -16,8 +17,6 @@ module.exports = {
     }
     const status = queue.songs.map((t, i) => `\`${++i}.\` | [\`${t.title}\`](https://youtube.com/watch?v=${t.id}) - [<@${t.req.id}>]`).join('\n');
     if (!status.length) return bot.error(`There is nothing in queue!`, bot, interaction);
-
-    if (!queue) np = status
     else np = `[${queue.songs[0].title}](https://youtube.com/watch?v=${queue.songs[0].id}) - [<@${queue.songs[0].req.id}>]`
     if (queue) thumbnail = queue.songs[0].thumbnail
     else thumbnail = interaction.guild.iconURL()

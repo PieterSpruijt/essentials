@@ -30,7 +30,7 @@ module.exports = {
     if (wins >= userData.hand) return bot.error(`You don't have enough money`, bot, interaction);
     let win = false;
     let number = []
-    for (i = 0; i < 3; i++) { number[i] = Math.floor(Math.random() * slotItems.length); }
+    for (let i = 0; i < 3; i++) { number[i] = Math.floor(Math.random() * slotItems.length); }
 
     if (number[0] == number[1] && number[1] == number[2]) { 
         wins *= 9

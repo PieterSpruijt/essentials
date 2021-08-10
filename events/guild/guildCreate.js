@@ -25,12 +25,14 @@ module.exports = async (bot, guild) => {
   Embed2.setAuthor(bot.config.Botname, bot.config.embeds.footer_photo, bot.config.website)
   Embed2.setThumbnail(bot.config.embeds.footer_photo)
   Embed2.addFields(
-        { name: 'How to set prefix?', value: `the default prefix is ​​/ (slash commands)` },
+        { name: 'How to set prefix?', value: `the default prefix is`  + ' / ' + `(slash commands)` },
         { name: 'I need help what now?', value: `You can reach us by clicking [HERE](${bot.config.website}). we also have a discord help server click [HERE](${bot.config.support_server}).` },
         { name: 'Invite the bot!', value: `You can invite the bot by pressing [HERE](${bot.config.botInvite})` }
     )
   Embed2.setFooter(bot.config.embeds.footer_name, bot.config.embeds.footer_photo);
   defaultChannel.send({embeds: [Embed2]})
   defaultChannel.send(bot.config.support_server); 
-  } catch (e) {}
+  } catch (e) {
+    //error
+  }
 };

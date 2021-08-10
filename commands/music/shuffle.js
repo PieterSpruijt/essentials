@@ -2,7 +2,7 @@ module.exports = {
   name: `shuffle`,
   description: `Shuffle the queue!`,
   private: false,
-  run: async (bot, interaction, userinfo) => {
+  run: async (bot, interaction) => {
     const channel = interaction.member.voice.channel;
     if (!channel) return bot.error(`You should join a voice channel before using this command!`, bot, interaction)
     const queue = bot.queue.get(interaction.guild.id)
@@ -13,8 +13,8 @@ module.exports = {
       [songs[i], songs[j]] = [songs[j], songs[i]];
     }
     queue.songs = songs;
-    message.client.queue.set(message.guild.id, queue);
-    await interaction.editRely({content: `Shuffled the current queue 🔀`});
+    bot.queue.set(interaction.guild.id, queue);
+    await interaction.editRely({ content: `Shuffled the current queue 🔀` });
   },
 };
 

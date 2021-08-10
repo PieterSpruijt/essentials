@@ -1,4 +1,4 @@
-const { AudioPlayerStatus, createAudioResource, createAudioPlayer, NoSubscriberBehavior, joinVoiceChannel, StreamType, VoiceConnectionStatus } = require('@discordjs/voice');
+const {createAudioResource, StreamType } = require('@discordjs/voice');
 const ytdl = require('ytdl-core-discord');
 
 module.exports = {
@@ -15,7 +15,7 @@ module.exports = {
     },
 
   ],
-  run: async (bot, interaction, userinfo) => {
+  run: async (bot, interaction) => {
     if (interaction.data.options[0]) {
       const queue = bot.queue.get(interaction.guild.id);
       if (!queue) return bot.error("There is no queue.", bot, interaction);

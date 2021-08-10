@@ -43,5 +43,7 @@ module.exports = async (bot, oldMessage, newMessage) => {
     var storedSettings = await logchannel.findOne({ gid: newMessage.guild.id });
     if (!newMessage.guild.channels.cache.get(storedSettings.logchannel)) return;
     newMessage.guild.channels.cache.get(storedSettings.logchannel).send({embeds: [embed]})
-  } catch (e) {}
+  } catch (e) {
+    //error
+  }
 };

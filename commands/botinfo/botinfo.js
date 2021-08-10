@@ -54,8 +54,10 @@ module.exports = {
     }
   ],
   run: async (bot, interaction, userinfo) => {
+    let process = process;
     let command = interaction.options._subcommand;
     if (command === `info`) {
+      /*
       var totalGuilds;
       var totalMembers;
       var totalChannels;
@@ -72,6 +74,7 @@ module.exports = {
           totalChannels = results[2].reduce((acc, channelCount) => acc + channelCount, 0);
         })
         .catch(e => { });
+        */
 
 
       let totalSeconds = (bot.uptime / 1000);
@@ -132,7 +135,7 @@ module.exports = {
       dbl.hasVoted(interaction.member.user.id).then(async (voted) => {
         if (voted) await interaction.editReply({ embeds: [Embed1] });
         if (!voted) await interaction.editReply({ embeds: [Embed2] });
-      }).catch(error => { bot.error(`there was an error by checking this vote!`, bot, interaction) });
+      }).catch(() => { bot.error(`there was an error by checking this vote!`, bot, interaction) });
 
     } else if (command == `bugreport`) {
       const buglogs = new Discord.WebhookClient({ id: bot.config.webhooks["bug-reports"][0], token: bot.config.webhooks["bug-reports"][1] });

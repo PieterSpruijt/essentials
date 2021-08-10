@@ -2,7 +2,7 @@ const userdb = require(`../../models/userdb`);
 const Discord = require('discord.js');
 const generator = require('generate-password');
 const GuildSettings = require('../../models/settings');
-const Timeout = new Set();
+//const Timeout = new Set();
 
 module.exports = async function (bot, interaction) {
     console.log(interaction)
@@ -19,7 +19,7 @@ module.exports = async function (bot, interaction) {
     }
 
     if (interaction.isButton()) {
-
+        //code
     } else if (interaction.isCommand()) {
         //bot.api.applications(`775055776854441985`).guilds(`846707934040948776`).commands(interaction.commandId).delete();
 
@@ -58,7 +58,7 @@ module.exports = async function (bot, interaction) {
                 .addField(`ERROR`, `\`\`\`${err}\`\`\``)
                 .addField(`STACK`, `\`\`\`${err.stack}\`\`\``);
             console.log(err)
-            errorlog.send({ embeds: [embed] }).catch(error => { })
+            errorlog.send({ embeds: [embed] }).catch(() => { })
             interaction.editReply({ embeds: [{ color: userinfo.color, title: `ERROR`, description: `An error has occurred\nSend this to the developers: \`${password}\`You can contact the developers [by joining the support server](${bot.config.support_server})` }], ephemeral: true });
         });
 

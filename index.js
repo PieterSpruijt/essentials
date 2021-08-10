@@ -31,7 +31,7 @@ manager.on('shardCreate', shard => {
         startlogs.send({ embeds: [embed] });
         console.log(`Shard ${shard.id}/${manager.totalShards - 1} is online!`);
     })
-    shard.on('disconnect', (a, b) => {
+    shard.on('disconnect', () => {
 
         let embed = new Discord.MessageEmbed()
             .setTitle(`Shard ${shard.id} disconnected`)
@@ -40,7 +40,7 @@ manager.on('shardCreate', shard => {
             .setTimestamp();
         shardlogs.send({ embeds: [embed] });
     })
-    shard.on('reconnecting', (a, b) => {
+    shard.on('reconnecting', () => {
         let embed = new Discord.MessageEmbed()
             .setTitle(`Shard ${shard.id} reconnecting`)
             .setColor('GREEN')

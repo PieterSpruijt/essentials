@@ -92,10 +92,10 @@ module.exports = {
     let command = interaction.options._subcommand;
     if (command === `economy`) {
       if (!interaction.member.permissions.has(bot.perms.ADMINISTRATOR)) return bot.error(`You Dont have Permission to do that! You must be Administrator!`, bot, interaction);
-      var storedSettings = await model10.findOne({ gid: interaction.guild.id });
+      let storedSettings = await model10.findOne({ gid: interaction.guild.id });
       if (!storedSettings) {
         // If there are no settings stored for this guild, we create them and try to retrive them again.
-        const newSettings = new model10({
+        let newSettings = new model10({
           gid: interaction.guild.id,
           levels: true,
           economy: false
@@ -116,17 +116,17 @@ module.exports = {
     } else if (command === `cleareconomy`) {
 
       if (!interaction.member.permissions.has(bot.perms.ADMINISTRATOR)) return bot.error(`You Dont have Permission to do that! You must be Administrator!`, bot, interaction);
-      var Data = await model.find({ gid: interaction.guild.id });
+      let Data = await model.find({ gid: interaction.guild.id });
       if (!Data) return bot.error(`There is no guild database!`, bot, interaction);
       let size = Data.length;
-      var deleted = await model.deleteMany({ gid: interaction.guild.id });
-      await interaction.editReply(`Successfull deleted ${size} user profiles of this server!`);;
+      await model.deleteMany({ gid: interaction.guild.id });
+      await interaction.editReply(`Successfull deleted ${size} user profiles of this server!`);
 
     } else if (command === `logchannel`) {
       if (!interaction.member.permissions.has(bot.perms.ADMINISTRATOR)) return bot.error(`You Dont have Permission to do that! You must be Administrator!`, bot, interaction);
-      var storedSettings = await logchannel.findOne({ gid: interaction.guild.id });
+      let storedSettings = await logchannel.findOne({ gid: interaction.guild.id });
       if (!storedSettings) {
-        const newSettings = new logchannel({
+        let newSettings = new logchannel({
           gid: interaction.guild.id,
           logchannel: `None`,
           levels: true,
@@ -173,16 +173,16 @@ module.exports = {
           await i.deferReply({ ephemeral: true });
           if (i.customId === `delguilddata_${interaction.guild.id}`) {
 
-            var d1 = await model.deleteMany({ gid: interaction.guild.id });
-            var d2 = await model2.deleteMany({ gid: interaction.guild.id });
-            var d3 = await model3.deleteMany({ Guild: interaction.guild.id });
-            var d4 = await model4.deleteMany({ Guild: interaction.guild.id });
-            var d6 = await model6.deleteMany({ gid: interaction.guild.id });
-            var d8 = await model8.deleteMany({ gid: interaction.guild.id });
-            var pattern = `${interaction.guild.id}`
-            var d9 = await model9.deleteMany({ id: { $regex: pattern, $options: `x` } });
-            var d10 = await model10.deleteMany({ gid: interaction.guild.id });
-            var d11 = await model11.deleteMany({ Guild: interaction.guild.id });
+            await model.deleteMany({ gid: interaction.guild.id });
+            await model2.deleteMany({ gid: interaction.guild.id });
+            await model3.deleteMany({ Guild: interaction.guild.id });
+            await model4.deleteMany({ Guild: interaction.guild.id });
+            await model6.deleteMany({ gid: interaction.guild.id });
+            await model8.deleteMany({ gid: interaction.guild.id });
+            const pattern = `${interaction.guild.id}`
+            await model9.deleteMany({ id: { $regex: pattern, $options: `x` } });
+            await model10.deleteMany({ gid: interaction.guild.id });
+            await model11.deleteMany({ Guild: interaction.guild.id });
             await i.editReply({ content: `Deleted all guild data!`, ephemeral: true });
 
           } else if (i.customId === `canceldelguilddata_${interaction.guild.id}`) {
@@ -190,7 +190,6 @@ module.exports = {
             await i.editReply({ content: `Cancelled!`, ephemeral: true });
 
           }
-        } else {
         }
       });
 
@@ -205,7 +204,7 @@ module.exports = {
       let userinfo2 = await userdb.findOne({ userid: target.id });
       if (!userinfo2) {
         // If there are no settings stored for this guild, we create them and try to retrive them again.
-        newSettings = new userdb({
+        let newSettings = new userdb({
           userid: target.id,
           developer: false,
           banned: false,
@@ -235,11 +234,11 @@ module.exports = {
             data.save();
           }
         );
-        await interaction.editReply({ embeds: [{ description: `${bot.config.emojis.normal.check} You turned **Snipe** off`, color: `#e91e63` }], ephemeral: true });
+        await interaction.editReply({ embeds: [{ description: `${bot.config.emojis.normal.check} You turned **Snipe** off`, color: userinfo.color }], ephemeral: true });
       }
 
     } else if (command === `color`) {
-      if (!isHexcolor(interaction.data.options[0].value)) return await interaction.editReply({ embeds: [{ description: `${bot.config.emojis.normal.cross} You did not specify an hex color!`, color: `#e91e63` }], ephemeral: true });
+      if (!isHexcolor(interaction.data.options[0].value)) return await interaction.editReply({ embeds: [{ description: `${bot.config.emojis.normal.cross} You did not specify an hex color!`, color: userinfo.color }], ephemeral: true });
       userdb.findOne(
         { userid: interaction.member.user.id },
         async (err, data) => {
@@ -248,7 +247,7 @@ module.exports = {
           data.save();
         }
       );
-      await interaction.editReply({ embeds: [{ description: `${bot.config.emojis.normal.check} Changed ${interaction.data.options[0].value} to your default embed color`, color: `#e91e63` }], ephemeral: true });
+      await interaction.editReply({ embeds: [{ description: `${bot.config.emojis.normal.check} Changed ${interaction.data.options[0].value} to your default embed color`, color: userinfo.color }], ephemeral: true });
 
     }
 

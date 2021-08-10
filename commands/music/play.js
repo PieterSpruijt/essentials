@@ -1,7 +1,7 @@
 const { Client } = require("youtubei");
 const ytdl = require('ytdl-core-discord');
 const discord = require('discord.js')
-const { VoiceConnectionStatus, entersState, AudioPlayerStatus, createAudioResource, createAudioPlayer, NoSubscriberBehavior, joinVoiceChannel, StreamType } = require('@discordjs/voice');
+const { VoiceConnectionStatus, entersState, AudioPlayerStatus, createAudioResource, createAudioPlayer, joinVoiceChannel, StreamType } = require('@discordjs/voice');
 module.exports = {
   name: `play`,
   description: `Play music`,
@@ -54,7 +54,7 @@ module.exports = {
 
     if (server) {
       server.songs.push(song);
-      let embed = new discord.MessageEmbed()
+      let noiceEmbed = new discord.MessageEmbed()
         .setTitle('Added to queue!')
         .setColor(userinfo.color)
         .addField('Name', song.title, true)
@@ -125,7 +125,7 @@ module.exports = {
       connection.subscribe(player);
       play(queueConstruct.songs[0]);
 
-      connection.on(VoiceConnectionStatus.Disconnected, async (oldState, newState) => {
+      connection.on(VoiceConnectionStatus.Disconnected, async () => {
         try {
           await Promise.race([
             entersState(connection, VoiceConnectionStatus.Signalling, 5_000),

@@ -10,7 +10,7 @@ module.exports = {
       required: true
     },
   ],
-  run: async (bot, interaction, userinfo) => {
+  run: async (bot, interaction) => {
     const queue = bot.queue.get(interaction.guild.id);
     if (!queue) return bot.error("There is no queue.", bot, interaction);
     if (queue.songs.length == 1) return bot.error("There is no queue.", bot, interaction);

@@ -12,5 +12,7 @@ module.exports = async (bot, emoji) => {
     var storedSettings = await logchannel.findOne({ gid: emoji.guild.id });
     if (!emoji.guild.channels.cache.get(storedSettings.logchannel)) return;
     emoji.guild.channels.cache.get(storedSettings.logchannel).send({embeds: [embed]})
-  } catch (e) {}
+  } catch (e) {
+    //error
+  }
 };

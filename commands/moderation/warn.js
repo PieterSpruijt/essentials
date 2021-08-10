@@ -20,7 +20,7 @@ module.exports = {
     }
 
   ],
-  run: async (bot, interaction, userinfo) => {
+  run: async (bot, interaction) => {
     if (!interaction.member.permissions.has(bot.perms.KICK_MEMBERS))
       return bot.error(`You Dont have Permission to do that you can do \`report [tag user] [reason]\``, bot, interaction);
     let user = interaction.data.options[0].user;

@@ -1,4 +1,3 @@
-const Discord = require('discord.js');
 const money = require('../../models/economy');
 
 module.exports = {
@@ -14,7 +13,7 @@ module.exports = {
     }
   ],
   timeout: 3600000,
-  run: async (bot, interaction, userinfo) => {
+  run: async (bot, interaction) => {
     const GuildSettings = require("../../models/settings");
     var storedSettings = await GuildSettings.findOne({ gid: interaction.guild.id });
     if (!storedSettings.economy) return bot.error(`Economy is disabled in this guild!`, bot, interaction);
@@ -45,7 +44,7 @@ module.exports = {
                 data.save();
             }
           );
-        await interaction.editReply(`ou successfully robbed **${User.tag}** and stole 🍣 **${amount}**!`);
+        await interaction.editReply(`You successfully robbed **${User.tag}** and stole 🍣 **${amount}**!`);
     } else {
       money.findOne(
         { gid: interaction.guild.id, userid: interaction.member.user.id},

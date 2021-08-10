@@ -150,7 +150,7 @@ module.exports = {
                         .setColor(userinfo.color);
                     await interaction.editReply({ embeds: [embed2] });
                 });
-        } else if (command === `cat`) {
+        } else if (command === `ascii`) {
 
             const figlet = require('figlet');
             const jsp = require('jspaste')
@@ -214,7 +214,7 @@ module.exports = {
             let User = interaction.data.options[0].user;
             let UserAvatar = User.displayAvatarURL({ dynamic: false, format: 'png' });
             let img = await new DIG.Kiss().getImage(avatar, UserAvatar);
-            let attach = new Discord.MessageAttachment(img, "kiss.png");;
+            let attach = new Discord.MessageAttachment(img, "kiss.png");
             await interaction.editReply({ files: [attach] })
 
         } else if (command === `panda`) {
@@ -243,7 +243,7 @@ module.exports = {
 
 
             let img = await new DIG.Podium().getImage(User1Avatar, User2Avatar, User3Avatar, User1.tag, User2.tag, User3.tag);
-            let attach = new Discord.MessageAttachment(img, "podium.png");;
+            let attach = new Discord.MessageAttachment(img, "podium.png");
             await interaction.editReply({ files: [attach] })
         } else if (command === `red-panda`) {
             let url = `https://some-random-api.ml/img/red_panda`;
@@ -270,7 +270,7 @@ module.exports = {
             let User = interaction.data.options[0].user;
             let UserAvatar = User.displayAvatarURL({ dynamic: false, format: 'png' });
             let img = await new DIG.Wanted().getImage(UserAvatar, `€`);
-            let attach = new Discord.MessageAttachment(img, "wanted.png");;
+            let attach = new Discord.MessageAttachment(img, "wanted.png");
             await interaction.editReply({ files: [attach] });
         } else if (command === `gif`) {
             var giphy = require('giphy-api')(bot.config.giphyToken);
@@ -298,8 +298,6 @@ module.exports = {
                     var index = response.data.children[Math.floor(Math.random() * 99) + 1].data
 
                     if (index.post_hint !== 'image') {
-
-                        var text = index.selftext
                         const textembed = new Discord.MessageEmbed()
                             .setTitle(title)
                             .setColor(userinfo.color)
@@ -314,7 +312,6 @@ module.exports = {
                     var ups = index.ups
                     var coms = index.num_comments
                     var link = 'https://reddit.com' + index.permalink
-                    var subRedditName = index.subreddit_name_prefixed
 
                     if (index.post_hint !== 'image') {
                         const textembed = new Discord.MessageEmbed()
@@ -335,7 +332,6 @@ module.exports = {
 
                                 if (index.post_hint !== 'image') {
 
-                                    var text = index.selftext
                                     const textembed = new Discord.MessageEmbed()
                                         .setTitle(title)
                                         .setColor(userinfo.color)
@@ -350,7 +346,6 @@ module.exports = {
                                 var ups = index.ups
                                 var coms = index.num_comments
                                 var link = 'https://reddit.com' + index.permalink
-                                var subRedditName = index.subreddit_name_prefixed
 
                                 if (index.post_hint !== 'image') {
                                     const textembed = new Discord.MessageEmbed()
@@ -368,7 +363,7 @@ module.exports = {
                                     .setURL(`https://reddit.com/${link}`)
                                     .setFooter(`👍${ups} | 💬${coms}`)
                                 await interaction.editReply({ embeds: [imageembed] })
-                            }).on('error', function (e) { })
+                            }).on('error', function () { })
                         })({ embeds: [textembed] })
                     }
                     const imageembed = new Discord.MessageEmbed()
@@ -378,7 +373,7 @@ module.exports = {
                         .setURL(`https://reddit.com/${link}`)
                         .setFooter(`👍${ups} | 💬${coms}`)
                     await interaction.editReply({ embeds: [imageembed] })
-                }).on('error', function (e) { })
+                }).on('error', function () { })
             })
 
         }

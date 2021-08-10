@@ -1,5 +1,3 @@
-const { MessageEmbed } = require("discord.js");
-
 module.exports = {
   name: "clear",
   description: "Clear messages in a channel",
@@ -12,10 +10,10 @@ module.exports = {
       required: true
     }
   ],
-  run: async (bot, interaction, userinfo) => {
+  run: async (bot, interaction) => {
     if (!interaction.member.permissions.has(bot.perms.MANAGE_MESSAGES))
       return bot.error(`You Dont have Permsission to do that you can do \`report [tag user] [reason]\` of you want to report someone!`, bot, interaction);
-    const amount = interaction.data.options[0].value + 1;
+    let amount = interaction.data.options[0].value + 1;
 
 
     if (amount <= 1 || amount > 100) {
@@ -23,7 +21,7 @@ module.exports = {
     }
     if (amount > 100) amount = 100;
 
-    interaction.channel.bulkDelete(amount, true).catch(async (err) => {
+    interaction.channel.bulkDelete(amount, true).catch(async () => {
       //console.error(err); mogelijk error van console.
       return await bot.error(`There was an error trying to delete messages in this channel!`, bot, interaction);
     });

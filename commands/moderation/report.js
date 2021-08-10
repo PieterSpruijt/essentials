@@ -18,7 +18,7 @@ module.exports = {
       required: true
     }
   ],
-  run: async (bot, interaction, userinfo) => {
+  run: async (bot, interaction) => {
     let User = interaction.data.options[0].user
     let Avatar = User.displayAvatarURL();
     let Channel = interaction.guild.channels.cache.find(

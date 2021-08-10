@@ -11,5 +11,7 @@ module.exports = async (bot, guild) => {
       .setFooter(bot.config.embeds.footer_name)
       .setTimestamp();
     webhookClient.send({ embeds: [newembed] });
-  } catch (e) { }
+  } catch (e) {
+    //error
+  }
 };
