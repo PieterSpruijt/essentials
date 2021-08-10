@@ -54,7 +54,6 @@ module.exports = {
     }
   ],
   run: async (bot, interaction, userinfo) => {
-    let process = process;
     let command = interaction.options._subcommand;
     if (command === `info`) {
       /*
