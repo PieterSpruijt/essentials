@@ -5,7 +5,6 @@ const GuildSettings = require('../../models/settings');
 //const Timeout = new Set();
 
 module.exports = async function (bot, interaction) {
-    console.log(interaction)
     var storedSettings = await GuildSettings.findOne({ gid: interaction.guild.id });
     if (!storedSettings) {
         // If there are no settings stored for this guild, we create them and try to retrive them again.
@@ -23,7 +22,7 @@ module.exports = async function (bot, interaction) {
     } else if (interaction.isCommand()) {
         //bot.api.applications(`775055776854441985`).guilds(`846707934040948776`).commands(interaction.commandId).delete();
 
-        let userinfo = await userdb.findOne({ userid: interaction.member.user });
+        let userinfo = await userdb.findOne({ userid: interaction.user.id });
         if (!userinfo) {
             userinfo = {
                 userid: interaction.member.user.id,

@@ -52,7 +52,7 @@ module.exports = {
         {
           type: 5,
           name: `value`,
-          description: `The valueto set to!`,
+          description: `The value to set!`,
           required: true
         }
       ]
@@ -66,7 +66,21 @@ module.exports = {
         {
           type: 5,
           name: `value`,
-          description: `The valueto set to!`,
+          description: `The value to set!`,
+          required: true
+        }
+      ]
+
+    },
+    {
+      "name": "levels",
+      "description": "Enable/disable levels",
+      "type": 1,
+      options: [
+        {
+          type: 5,
+          name: `value`,
+          description: `The value to set!`,
           required: true
         }
       ]
@@ -112,6 +126,29 @@ module.exports = {
         }
       );
       await interaction.editReply(`${interaction.data.options[0].value ? `Enabled` : `Disabled`} Economy!`);
+
+    } else if (command === `levels`) {
+      if (!interaction.member.permissions.has(bot.perms.ADMINISTRATOR)) return bot.error(`You Dont have Permission to do that! You must be Administrator!`, bot, interaction);
+      let storedSettings = await model10.findOne({ gid: interaction.guild.id });
+      if (!storedSettings) {
+        // If there are no settings stored for this guild, we create them and try to retrive them again.
+        let newSettings = new model10({
+          gid: interaction.guild.id,
+          levels: true,
+          economy: false
+        });
+        await newSettings.save().catch(() => { });
+        storedSettings = await model10.findOne({ gid: interaction.guild.id });
+      }
+      model10.findOne(
+        { gid: interaction.guild.id },
+        async (err, data) => {
+          if (err) throw err;
+          data.levels = interaction.data.options[0].value
+          data.save();
+        }
+      );
+      await interaction.editReply(`${interaction.data.options[0].value ? `Enabled` : `Disabled`} Levels!`);
 
     } else if (command === `cleareconomy`) {
 

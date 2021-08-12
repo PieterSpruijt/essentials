@@ -142,7 +142,9 @@ module.exports = {
             let url = `https://aws.random.cat/meow`;
             axios
                 .get(url)
+                .catch(() => { return bot.error(`Something went wrong!`, bot, interaction) })
                 .then(async (embed) => {
+                    if (!embed) return;
                     let { data } = embed;
                     let embed2 = new MessageEmbed()
                         .setTitle(`Random cat`)
@@ -173,7 +175,9 @@ module.exports = {
             let url = `https://dog.ceo/api/breeds/image/random`;
             axios
                 .get(url)
+                .catch(() => { return bot.error(`Something went wrong!`, bot, interaction) })
                 .then(async (embed) => {
+                    if (!embed) return;
                     let { data } = embed;
                     let embed2 = new MessageEmbed()
                         .setTitle(`Random dog`)
@@ -186,7 +190,9 @@ module.exports = {
             let url = `https://random-d.uk/api/v2/random`;
             axios
                 .get(url)
+                .catch(() => { return bot.error(`Something went wrong!`, bot, interaction) })
                 .then(async (embed) => {
+                    if (!embed) return;
                     let { data } = embed;
                     let embed2 = new MessageEmbed()
                         .setTitle(`Random duck`)
@@ -199,7 +205,9 @@ module.exports = {
             let url = `https://some-random-api.ml/img/fox`;
             axios
                 .get(url)
+                .catch(() => { return bot.error(`Something went wrong!`, bot, interaction) })
                 .then(async (embed) => {
+                    if (!embed) return;
                     let { data } = embed;
                     let embed2 = new MessageEmbed()
                         .setTitle(`Random fox`)
@@ -221,7 +229,9 @@ module.exports = {
             let url = `https://some-random-api.ml/img/panda`;
             axios
                 .get(url)
+                .catch(() => { return bot.error(`Something went wrong!`, bot, interaction) })
                 .then(async (embed) => {
+                    if (!embed) return;
                     let { data } = embed;
                     let embed2 = new MessageEmbed()
                         .setTitle(`Random panda`)
@@ -249,7 +259,9 @@ module.exports = {
             let url = `https://some-random-api.ml/img/red_panda`;
             axios
                 .get(url)
+                .catch(() => { return bot.error(`Something went wrong!`, bot, interaction) })
                 .then(async (embed) => {
+                    if (!embed) return;
                     let { data } = embed;
                     let embed2 = new MessageEmbed()
                         .setTitle(`Random red panda`)

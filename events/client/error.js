@@ -6,7 +6,8 @@ const { MessageEmbed } = require("discord.js")
  * @param {Interaction} interaction 
  **/
 module.exports = async function (text, bot, interaction) {
-    const { emojis } = this.config;
+    const { emojis } = global.bot.config;
+    interaction.channel.send(emojis.normal.cross + "`" + emojis.normal.cross + "`")
     let embed = new MessageEmbed()
         .setColor(`RED`)
         .setDescription(emojis.normal.cross + ` | ` + text);

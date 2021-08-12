@@ -8,16 +8,21 @@ module.exports = async function (bot) {
 
       let command = pull;
       bot.commands.set(pull.name, pull);
+      if (command.developer) {
+        console.log(`Loaded command ${command.name}`);
+      } else {
+        bot.api.applications(`775055776854441985`).guilds(`846707934040948776`).commands.post({
+          data: {
+            name: command.name,
+            description: command.description,
+            options: command.commandOptions,
+            default_permission: true
 
-      bot.api.applications(`775055776854441985`).guilds(`846707934040948776`).commands.post({
-        data: {
-          name: command.name,
-          description: command.description,
-          options: command.commandOptions,
-          default_permission: true
+          }
+        }).then(console.log(`Loaded command ${command.name}`));
+      }
 
-        }
-      }).then(console.log(`Loaded command ${command.name}`));
+
     });
 
 

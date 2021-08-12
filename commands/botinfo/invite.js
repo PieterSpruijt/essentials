@@ -6,13 +6,13 @@ module.exports = {
   category: "botinfo",
   private: false,
   run: async (bot, interaction, userinfo) => {
-    let Embed = new Discord.MessageEmbed()
-        .setTitle(`Invite Essentials!`)
-        .setAuthor(bot.config.botName, bot.config.embeds.footer_photo, bot.config.website)
-        .setThumbnail(bot.config.embeds.footer_photo)
-        .setDescription(bot.config.botInvite)
-        .setFooter(bot.config.embeds.footer_name, bot.config.embeds.footer_photo)
-        .setColor(userinfo.color);
-    interaction.editReply({embeds: [Embed]});
+    const row = new Discord.MessageActionRow()
+            .addComponents(
+                new Discord.MessageButton()
+                    .setLabel(`Invite`)
+                    .setStyle(`LINK`)
+                    .setURL(global.bot.config.botInvite)
+            )
+    await interaction.editReply({content: `[click to invite me!](<${global.bot.config.botInvite}>)`, components: [row]});
   },
 };
