@@ -32,7 +32,7 @@ module.exports = {
         await interaction.editReply(`Successfull removed **${role.name}** from **${User.user.tag}**`);
       } else {
         User.roles.add(role).catch(() => {
-          return bot.error(`Something went wrong with adding the role!`, bot, error);
+          return bot.error(`Something went wrong with adding the role!`, bot, interaction);
         });
         await interaction.editReply(`Successfull added **${role.name}** to **${User.user.tag}**`);
       }
