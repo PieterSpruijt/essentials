@@ -4,9 +4,9 @@
     "description": "The essentials bot on Discord!",
     "main": "index.js",
     "scripts": {
-        "linter": "eslint .",
+        "test": "eslint .",
         "eslint:github-action": "eslint .",
-        "test": "echo \"Error: no test specified\" && exit 1",
+        "testa": "echo \"Error: no test specified\" && exit 1",
         "start": "node . "
     },
     "repository": {
