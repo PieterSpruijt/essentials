@@ -5,7 +5,7 @@ module.exports = {
   description: "Make a invite for this server",
   category: "botinfo",
   private: false,
-  run: async (bot, interaction, userinfo) => {
+  run: async (bot, interaction) => {
     const row = new Discord.MessageActionRow()
             .addComponents(
                 new Discord.MessageButton()
