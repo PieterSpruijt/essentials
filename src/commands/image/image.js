@@ -139,16 +139,16 @@ module.exports = {
         let command = interaction.options._subcommand;
 
         if (command === `cat`) {
-            let url = `https://aws.random.cat/meow`;
+            let url = `https://some-random-api.ml/img/cat`;
             axios
                 .get(url)
-                .catch(() => { return bot.error(`Something went wrong!`, bot, interaction) })
+                .catch((e) => {console.log(e); return bot.error(`Something went wrong!`, bot, interaction) })
                 .then(async (embed) => {
                     if (!embed) return;
                     let { data } = embed;
                     let embed2 = new MessageEmbed()
                         .setTitle(`Random cat`)
-                        .setImage(data.file)
+                        .setImage(data.link)
                         .setColor(userinfo.color);
                     await interaction.editReply({ embeds: [embed2] });
                 });

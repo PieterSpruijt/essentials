@@ -39,8 +39,10 @@ bot.snipes = new Discord.Collection();
 bot.editsnipes = new Discord.Collection();
 bot.queue = new Map();
 bot.categories = fs.readdirSync(`src/commands/`);
+
 global.bot = bot;
 global.package = require('../package.json');
+global.models = require('./models/index.js');
 
 mongoose.connect(config.mongoToken, {
     useUnifiedTopology: true,

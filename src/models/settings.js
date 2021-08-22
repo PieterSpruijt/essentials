@@ -6,7 +6,8 @@ const guildSettingSchema = new Schema({
   gid: { type: String },
   prefix: { type: String, default: "e!" },
   levels: { type: Boolean, default: true },
-  economy: {type: Boolean, default: false}
+  economy: { type: Boolean, default: false },
+  devCommands: { type: Array, default: [] }
 });
 
 // We export it as a mongoose model.

@@ -1,4 +1,12 @@
 const Discord = require('discord.js');
+const evallog = new Discord.WebhookClient({ id: global.bot.config.webhooks['eval-log'][0], token: global.bot.config.webhooks['eval-log'][1] });
+
+const clean = text => {
+  if (typeof (text) === "string")
+    return text.replace(/`/g, "`" + String.fromCharCode(8203)).replace(/@/g, "@" + String.fromCharCode(8203));
+  else
+    return text;
+}
 
 module.exports = {
   name: "eval",
@@ -15,13 +23,73 @@ module.exports = {
     }
   ],
   run: async (bot, interaction, userinfo) => {
-    let Embed = new Discord.MessageEmbed()
-        .setTitle(`Invite Essentials!`)
-        .setAuthor(bot.config.botName, bot.config.embeds.footer_photo, bot.config.website)
-        .setThumbnail(bot.config.embeds.footer_photo)
-        .setDescription(bot.config.botInvite)
-        .setFooter(bot.config.embeds.footer_name, bot.config.embeds.footer_photo)
-        .setColor(userinfo.color);
-    interaction.editReply({embeds: [Embed]});
+    if (!userinfo.developer) return bot.error(`You are not allowed to use the eval (e) command\n This command is only for the Essentials developer team!`, bot, interaction);
+    const code = interaction.data.options[0].value;
+    try {
+      let evaled = eval(code);
+
+      if (typeof evaled !== "string")
+        evaled = require("util").inspect(evaled);
+      await interaction.editReply({
+        embeds: [{
+          fields: [
+            { name: "📥 Input code", value: `\`\`\`js\n${code}\`\`\`` },
+            { name: "📤 Output code", value: `\`\`\`powershell\n${clean(evaled)}\`\`\`` }
+          ],
+          color: `GREEN`
+        }], code: "xl"
+      }).catch(async (err) => {
+        await interaction.editReply({
+          embeds: [{
+            fields: [
+              { name: "📥 Input code", value: `\`\`\`js\n${code}\`\`\`` },
+              { name: "📤 Output code", value: `Error:\n\`\`\`powershell\n${err}\n${err.stack}\`\`\`` }
+            ],
+            color: `GREEN`
+          }], code: "xl"
+        }).catch(() => { });
+      });
+      evallog.send({
+        embeds: [{
+          fields: [
+            { name: "New code", value: `${interaction.user.id} (${interaction.user.tag})` },
+            { name: "📥 Input code", value: `\`\`\`js\n${code}\`\`\`` },
+            { name: "📤 Output code", value: `\`\`\`powershell\n${clean(evaled)}\`\`\`` }
+          ],
+          color: `GREEN`
+        }], code: "xl"
+      }).catch((err) => {
+        evallog.send({
+          embeds: [{
+            fields: [
+              { name: "New code", value: `${interaction.user.id} (${interaction.user.tag})` },
+              { name: "📥 Input code", value: `\`\`\`js\n${code}\`\`\`` },
+              { name: "📤 Output code", value: `Error:\n\`\`\`powershell\n${err}\n${err.stack}\`\`\`` }
+            ],
+            color: `GREEN`
+          }], code: "xl"
+        }).catch(() => { });
+      });
+    } catch (err) {
+      await interaction.editReply({
+        embeds: [{
+          fields: [
+            { name: "📥 Input code", value: `\`\`\`js\n${code}\`\`\`` },
+            { name: "📤 Output code", value: `Error:\n\`\`\`powershell\n${err}\n${err.stack}\`\`\`` }
+          ],
+          color: `GREEN`
+        }], code: "xl"
+      }).catch(() => { });
+      evallog.send({
+        embeds: [{
+          fields: [
+            { name: "New code", value: `${interaction.user.id} (${interaction.user.tag})` },
+            { name: "📥 Input code", value: `\`\`\`js\n${code}\`\`\`` },
+            { name: "📤 Output code", value: `Error:\n\`\`\`powershell\n${err}\n${err.stack}\`\`\`` }
+          ],
+          color: `GREEN`
+        }], code: "xl"
+      }).catch(() => { });
+    }
   },
 };

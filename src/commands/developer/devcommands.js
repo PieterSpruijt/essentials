@@ -1,4 +1,6 @@
 const Discord = require('discord.js');
+const fs = require('fs');
+const model = global.models.settings;
 
 module.exports = {
     name: "devcommands",
@@ -23,25 +25,12 @@ module.exports = {
             )
         if (!userinfo.developer) return await interaction.editReply({ content: `This is not for you!`, components: [row] });
         const value = interaction.data.options[0].value;
-        console.log(value)
         if (value) {
-            let pull = require(`./eval`);
-            bot.api.applications(`775055776854441985`).guilds(interaction.guild.id).commands.post(
-                {
-                    data: {
-                        name: pull.name,
-                        description: pull.description,
-                        options: pull.commandOptions,
-                        default_permission: true
+            fs.readdirSync(`src/commands/developer`).map(async (cmd) => {
+                if (cmd.toString() != `devcommands.js`) {
+                    let pull = require(`./${cmd.split(`.`)[0]}`);
 
-                    }
-                }
-            );
-            /*
-            fs.readdirSync(`./commands/developer`).map((cmd) => {
-                if (cmd != `devcommands.js`) {
-                    let pull = require(`./${cmd}`);
-                    bot.api.applications(`775055776854441985`).guilds(interaction.guild.id).commands.post(
+                    bot.api.applications(bot.application.id).guilds(interaction.guild.id).commands.post(
                         {
                             data: {
                                 name: pull.name,
@@ -54,19 +43,22 @@ module.exports = {
                     );
 
                 }
-
             });
-            */
+
+
             await interaction.editReply(`Enabled developer commands!`);
 
 
 
         } else if (!value) {
+            bot.api.applications(`775055776854441985`).guilds(interaction.guild.id).commands(`875345421424275456`).delete();
+            /*
             let commands = await interaction.guild.commands.fetch();
             commands.forEach(async (command) => {
                 console.log(command)
                 //bot.api.applications(`775055776854441985`).guilds(interaction.guild.id).commands(command.permissions.commandId).delete();
             }).catch(() => { });
+            */
             await interaction.editReply(`Disabled developer commands!`);
 
         }

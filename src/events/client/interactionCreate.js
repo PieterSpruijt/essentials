@@ -5,6 +5,7 @@ const GuildSettings = require('../../models/settings');
 //const Timeout = new Set();
 
 module.exports = async function (bot, interaction) {
+    console.log(interaction.commandId)
     var storedSettings = await GuildSettings.findOne({ gid: interaction.guild.id });
     if (!storedSettings) {
         // If there are no settings stored for this guild, we create them and try to retrive them again.
@@ -37,7 +38,10 @@ module.exports = async function (bot, interaction) {
         }
         const errorlog = new Discord.WebhookClient({ id: bot.config.webhooks["error-log"][0], token: bot.config.webhooks["error-log"][1] });
         const command = bot.commands.get(interaction.commandName);
-        if (!command) return await interaction.editReply({ content: `This is not a valid command!`, ephemeral: true });
+        if (!command) {
+            await interaction.deferReply({ ephemeral: true });
+            return await interaction.editReply({ content: `This is not a valid command!`, ephemeral: true });
+        }
         interaction.data = [];
         interaction.data.options = interaction.options._hoistedOptions
         if (command.private) {
