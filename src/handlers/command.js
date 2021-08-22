@@ -11,7 +11,7 @@ module.exports = async function (bot) {
       if (command.developer) {
         console.log(`Loaded command ${command.name}`);
       } else {
-        bot.api.applications(`775055776854441985`).guilds(`846707934040948776`).commands.post({
+        bot.api.applications(`775055776854441985`).guilds(`848571522398289950`).commands.post({
           data: {
             name: command.name,
             description: command.description,

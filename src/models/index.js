@@ -9,5 +9,6 @@ module.exports = {
     settings: require('./settings'),
     userdb: require('./userdb'),
     warns: require('./warns'),
-    xpdb: require('./xpdb')
+    xpdb: require('./xpdb'),
+    joinrole: require('./joinrole')
 }

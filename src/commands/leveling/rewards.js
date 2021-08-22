@@ -51,6 +51,7 @@ module.exports = {
     },
   ],
   run: async (bot, interaction, userinfo) => {
+    if (!interaction.member.permissions.has(bot.perms.ADMINISTRATOR)) return bot.error(`You Dont have Permission to do that! You must be Administrator!`, bot, interaction);
     let command = interaction.options._subcommand;
     if (command === `list`) {
       let Rewards = await model.find({ gid: interaction.guild.id });
@@ -60,7 +61,6 @@ module.exports = {
       }
       await interaction.editRepy({ embeds: [{ color: userinfo.color, title: `All level rewards`, description: List }] });
     } else if (command === `add`) {
-      console.log(interaction.data.options)
       const level = interaction.data.options[0].value;
       const role = interaction.data.options[1].role;
       if (!role) return bot.error(`You did not specify a role!`, bot, interaction);
