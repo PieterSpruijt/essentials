@@ -4,8 +4,8 @@
     "description": "The essentials bot on Discord!",
     "main": "src/index.js",
     "scripts": {
-        "test": "eslint .",
-        "build": "node src"
+        "test": "eslint src/",
+        "start": "node src/"
     },
     "repository": {
         "type": "git",
