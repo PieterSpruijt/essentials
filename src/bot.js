@@ -38,8 +38,9 @@ bot.events = new Discord.Collection();
 bot.snipes = new Discord.Collection();
 bot.editsnipes = new Discord.Collection();
 bot.queue = new Map();
-bot.categories = fs.readdirSync(`./commands/`);
+bot.categories = fs.readdirSync(`src/commands/`);
 global.bot = bot;
+global.package = require('../package.json');
 
 mongoose.connect(config.mongoToken, {
     useUnifiedTopology: true,
@@ -48,12 +49,12 @@ mongoose.connect(config.mongoToken, {
 
 require(`./handlers/command`)(bot);
 
-const eventsDir = `./` + `/events`;
+const eventsDir = `src/` + `/events`;
 if (!fs.existsSync(eventsDir) || !fs.lstatSync(eventsDir).isDirectory())
     throw new Error(`Could not find events directory! (should be in "./events")`);
 
-for (const category of fs.readdirSync(`./` + `/events`)) {
-    const categoryPath = `./` + `/events/` + category;
+for (const category of fs.readdirSync(`src/` + `/events`)) {
+    const categoryPath = `src/` + `/events/` + category;
     if (!fs.lstatSync(categoryPath).isDirectory()) continue;
     for (const eventName of fs.readdirSync(categoryPath)) {
         if (!eventName.endsWith(`.js`)) continue;

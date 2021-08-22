@@ -1,9 +1,9 @@
 const fs = require("fs");
 
 module.exports = async function (bot) {
-  fs.readdirSync("./commands/").map(async (dir) => {
+  fs.readdirSync("src/commands/").map(async (dir) => {
     //const commands = 
-    fs.readdirSync(`./commands/${dir}/`).map((cmd) => {
+    fs.readdirSync(`src/commands/${dir}/`).map((cmd) => {
       let pull = require(`../commands/${dir}/${cmd}`);
 
       let command = pull;

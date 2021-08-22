@@ -8,7 +8,7 @@ const startlogs = new Discord.WebhookClient({ id: config.webhooks['start-logs'][
 const shardlogs = new Discord.WebhookClient({ id: config.webhooks['shard-logs'][0], token: config.webhooks['shard-logs'][1] });
 
 
-const manager = new Discord.ShardingManager('./bot.js', {
+const manager = new Discord.ShardingManager('src/bot.js', {
     totalShards: 1,
     token: config.botToken,
     respawn: true

@@ -1,5 +1,5 @@
 const { MessageEmbed } = require("discord.js");
-const package = require('../../package.json');
+const package = global.package;
 const Discord = require(`discord.js`);
 
 module.exports = {
