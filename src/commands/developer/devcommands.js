@@ -1,6 +1,6 @@
 const Discord = require('discord.js');
 const fs = require('fs');
-const model = global.models.settings;
+//const model = global.models.settings;
 
 module.exports = {
     name: "devcommands",
