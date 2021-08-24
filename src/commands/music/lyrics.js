@@ -14,7 +14,6 @@ module.exports = {
     },
   ],
   run: async (bot, interaction, userinfo) => {
-    if (!userinfo.staff) return bot.error(`You Dont have Permission to do that!`, bot, interaction);
     let lyrics = null;
     const queue = bot.queue.get(interaction.guild.id);
     if (interaction.data.options[0]) {

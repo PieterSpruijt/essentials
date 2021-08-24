@@ -2,7 +2,7 @@ const Discord = require('discord.js');
 const model = require('../../models/economy');
 const model2 = require('../../models/afk');
 const model3 = require('../../models/ReactionRole');
-const model4 = require('../../models/custom');
+const model4 = require('../../models/invites');
 const model6 = require('../../models/logchannel');
 const model8 = require('../../models/lvlreward');
 const model9 = require('../../models/xpdb');
@@ -213,7 +213,7 @@ module.exports = {
             await model.deleteMany({ gid: interaction.guild.id });
             await model2.deleteMany({ gid: interaction.guild.id });
             await model3.deleteMany({ Guild: interaction.guild.id });
-            await model4.deleteMany({ Guild: interaction.guild.id });
+            await model4.deleteMany({ gid: interaction.guild.id });
             await model6.deleteMany({ gid: interaction.guild.id });
             await model8.deleteMany({ gid: interaction.guild.id });
             const pattern = `${interaction.guild.id}`

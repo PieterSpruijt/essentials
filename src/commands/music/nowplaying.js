@@ -4,7 +4,6 @@ module.exports = {
   description: `Get current song!`,
   private: false,
   run: async (bot, interaction, userinfo) => {
-    if (!userinfo.staff) return bot.error(`You Dont have Permission to do that!`, bot, interaction);
     const serverQueue = bot.queue.get(interaction.guild.id);
     if (!serverQueue) return bot.error("There is nothing playing in this server.", bot, interaction);
     let song = serverQueue.songs[0]

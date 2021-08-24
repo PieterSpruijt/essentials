@@ -1,6 +1,7 @@
 const Discord = require('discord.js');
 const { MessageEmbed } = require('discord.js');
 const axios = require('axios');
+const https = require('https');
 
 module.exports = {
     name: "image",
@@ -142,7 +143,7 @@ module.exports = {
             let url = `https://some-random-api.ml/img/cat`;
             axios
                 .get(url)
-                .catch((e) => {console.log(e); return bot.error(`Something went wrong!`, bot, interaction) })
+                .catch((e) => { console.log(e); return bot.error(`Something went wrong!`, bot, interaction) })
                 .then(async (embed) => {
                     if (!embed) return;
                     let { data } = embed;
@@ -298,7 +299,6 @@ module.exports = {
 
         } else if (command === `meme`) {
             const url = 'https://www.reddit.com/r/meme/hot/.json?limit=100'
-            const https = require('https');
             https.get(url, (result) => {
                 var body = ''
                 result.on('data', async (chunk) => {

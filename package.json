@@ -17,6 +17,7 @@
         "@discordjs/voice": "0.6.0",
         "axios": "0.21.1",
         "canvacord": "5.2.3",
+        "canvas": "^2.8.0",
         "console-title": "1.1.0",
         "dblapi.js": "2.4.1",
         "discord-giveaways": "4.5.1",
@@ -26,7 +27,6 @@
         "ffmpeg-static": "4.4.0",
         "figlet": "1.5.2",
         "fs": "0.0.1-security",
-        "generate-password": "1.6.1",
         "giphy-api": "2.0.2",
         "https": "1.0.0",
         "is-hexcolor": "1.0.0",
@@ -37,6 +37,8 @@
         "mathjs": "9.4.4",
         "minecraft-server-status": "1.0.1",
         "mongoose": "5.13.7",
+        "ms": "2.1.2",
+        "node-fetch": "2.6.1",
         "opusscript": "0.0.8",
         "topgg-autoposter": "2.0.0",
         "youtubei": "0.0.1-rc.20",
@@ -49,10 +51,6 @@
     "license": "ISC",
     "homepage": "https://www.essentialsbot.ga/",
     "devDependencies": {
-        "eslint": "^7.32.0",
-        "eslint-config-standard": "^16.0.3",
-        "eslint-plugin-import": "^2.24.1",
-        "eslint-plugin-node": "^11.1.0",
-        "eslint-plugin-promise": "^5.1.0"
+        "eslint": "^7.32.0"
     }
 }

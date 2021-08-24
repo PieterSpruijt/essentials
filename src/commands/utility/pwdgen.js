@@ -1,5 +1,4 @@
 const { MessageEmbed } = require("discord.js");
-var generator = require('generate-password');
 
 module.exports = {
   name: "pwdgen",
@@ -18,10 +17,13 @@ module.exports = {
       if (interaction.data.options[0].value > 51) return bot.error(`max lenght is 50!`, bot, interaction);
     }
     let lenght = interaction.data.options[0] ? interaction.data.options[0].value : 15;
-    var password = generator.generate({
-      length: lenght,
-      numbers: true
-    });
+    var chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+    var string_length = lenght;
+    var password = '';
+    for (var i = 0; i < string_length; i++) {
+      var rnum = Math.floor(Math.random() * chars.length);
+      password += chars.substring(rnum, rnum + 1);
+    }
     let embed = new MessageEmbed()
       .setColor(userinfo.color)
       .setTitle(`Password generator`)

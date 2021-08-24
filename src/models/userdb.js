@@ -3,7 +3,8 @@ let userdb = new mongoose.Schema({
   userid: { type: String },
   developer: { type: Boolean, default: false },
   banned: { type: Boolean, default: false },
-  color: { type: String, default: `#e91e63`},
-  snipe: { type: Boolean, default: true}
+  color: { type: String, default: `#e91e63` },
+  snipe: { type: Boolean, default: true },
+  rules: { type: Boolean, default: false }
 });
 module.exports = mongoose.model("userdb", userdb);

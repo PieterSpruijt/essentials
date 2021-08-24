@@ -7,6 +7,7 @@ module.exports = {
   description: "Get all info about this bot!",
   category: "botinfo",
   private: false,
+  timeout: 10000,
   commandOptions: [
     {
       type: 1,

@@ -4,18 +4,33 @@ const config = require(`./config`);
 const mongoose = require(`mongoose`);
 
 const otherIntents = [
-    Discord.Intents.FLAGS.DIRECT_MESSAGES,
-    Discord.Intents.FLAGS.GUILDS,
+    // Guild message Intents
     Discord.Intents.FLAGS.GUILD_MESSAGES,
+    Discord.Intents.FLAGS.GUILD_MESSAGE_REACTIONS,
+
+    // Direct message Intents
+    Discord.Intents.FLAGS.DIRECT_MESSAGES,
+    Discord.Intents.FLAGS.DIRECT_MESSAGE_REACTIONS,
+
+
+    //Guild Intents
+    Discord.Intents.FLAGS.GUILDS,
     Discord.Intents.FLAGS.GUILD_VOICE_STATES,
-    Discord.Intents.FLAGS.GUILD_MESSAGE_REACTIONS
+    Discord.Intents.FLAGS.GUILD_EMOJIS_AND_STICKERS,
+    Discord.Intents.FLAGS.GUILD_BANS,
+    Discord.Intents.FLAGS.GUILD_INVITES,
+    Discord.Intents.FLAGS.GUILD_MEMBERS,
 ];
 const bot = new Discord.Client({
-    allowedMentions: { parse: [`users`, `roles`], repliedUser: true },
-    partials: [`MESSAGE`, `CHANNEL`, `REACTION`],
+    allowedMentions: { parse: ["users", "roles"], repliedUser: true },
+    partials: ["MESSAGE", "CHANNEL", "REACTION"],
     intents: otherIntents
 });
+bot.on("debug", function(info){
+    console.log(`debug -> ${info}`);
+});
 
+/*
 const { GiveawaysManager } = require(`discord-giveaways`);
 const manager = new GiveawaysManager(bot, {
     storage: `./giveaways.json`,
@@ -27,10 +42,11 @@ const manager = new GiveawaysManager(bot, {
         reaction: `🎉`
     }
 });
+bot.giveawaysManager = manager;
+*/
 
 bot.perms = Discord.Permissions.FLAGS;
 bot.error = require(`./events/client/error`);
-bot.giveawaysManager = manager;
 bot.config = config;
 bot.commands = new Discord.Collection();
 bot.aliases = new Discord.Collection();
@@ -38,6 +54,7 @@ bot.events = new Discord.Collection();
 bot.snipes = new Discord.Collection();
 bot.editsnipes = new Discord.Collection();
 bot.queue = new Map();
+bot.invites = {};
 bot.categories = fs.readdirSync(`src/commands/`);
 
 global.bot = bot;

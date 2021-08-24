@@ -5,20 +5,14 @@ module.exports = {
     category: "utility",
     description: "Get serverinfo!",
     run: async (bot, interaction, userinfo) => {
-        function checkDays(date) {
-            let now = new Date();
-            let diff = now.getTime() - date.getTime();
-            let days = Math.floor(diff / 86400000);
-            return days + (days == 1 ? " day" : " days") + " ago";
-        }
         const verifyFlags = {
-            0: `Unrestricted`,
-            1: `Must have verified email on account`,
-            2: `Must be registered on Discord for longer than 5 minutes`,
-            3: `Must be a member of the server for longer than 10 minutes`,
-            4: `Must have a verified phone number`
+            "NONE": `Unrestricted`,
+            "LOW": `Must have verified email on account`,
+            "MEDIUM": `Must be registered on Discord for longer than 5 minutes`,
+            "HIGH": `Must be a member of the server for longer than 10 minutes`,
+            "HIGHEST": `Must have a verified phone number`
         }
-
+        console.log(interaction.guild)
         const embed = new Discord.MessageEmbed()
             .setThumbnail(interaction.guild.iconURL({ dynamic: true }))
             .setColor(userinfo.color)
@@ -26,22 +20,22 @@ module.exports = {
             .addFields(
                 {
                     name: "Server name: ",
-                    value: interaction.guild.name,
+                    value: `${interaction.guild.name}`,
                     inline: true,
                 },
                 {
                     name: "Server id: ",
-                    value: interaction.guild.id,
+                    value: `${interaction.guild.id}`,
                     inline: true,
                 },
                 {
                     name: "Owner: ",
-                    value: `<@!${interaction.guild.ownerID}>`,
+                    value: `<@!${interaction.guild.ownerId}>`,
                     inline: true
                 },
                 {
                     name: `Server Images`, value: `
-                    ${interaction.guild.icon && interaction.guild.banner && interaction.guild.splash ? `` : `No images`}
+                    ${interaction.guild.icon && interaction.guild.banner && interaction.guild.splash ? `No images` : ``}
                     ${interaction.guild.icon ? `[Server Icon](https://cdn.discordapp.com/icons/${interaction.guild.id}/${interaction.guild.icon}.png?size=4096)` : ``}
                     ${interaction.guild.banner ? `[Server Banner](https://cdn.discordapp.com/banners/${interaction.guild.id}/${interaction.guild.banner}.png?size=4096)` : ``}
                     ${interaction.guild.splash ? `[Invite Background](https://cdn.discordapp.com/splashes/${interaction.guild.id}/${interaction.guild.spash}.png?size=4096)` : ``}
@@ -49,7 +43,7 @@ module.exports = {
                 },
                 {
                     name: "Verify level: ",
-                    value: verifyFlags[interaction.guild.verificationLevel],
+                    value: `${verifyFlags[interaction.guild.verificationLevel]}`,
                     inline: true
                 },
                 {
@@ -59,43 +53,43 @@ module.exports = {
                 },
                 {
                     name: "Created on: ",
-                    value: `${interaction.channel.guild.createdAt.toUTCString().substr(0, 16)} (${checkDays(interaction.channel.guild.createdAt)}) \n\n`,
+                    value: `<t:${(interaction.channel.guild.createdAt.getTime() / 1000).toFixed(0)}> (<t:${(interaction.channel.guild.createdAt.getTime() / 1000).toFixed(0)}:R>)\n`,
                     inline: false
                 },
 
                 {
                     name: "Members: ",
-                    value: `${interaction.guild.memberCount} members!`,
+                    value: `${interaction.guild.memberCount}/${interaction.guild.maximumMembers}`,
                     inline: true
                 },
                 {
                     name: "Bots: ",
-                    value: `${interaction.guild.members.cache.filter(member => !member.user.bot).size} bots!`,
+                    value: `${interaction.guild.members.cache.filter(member => !member.user.bot).size}`,
                     inline: true
                 },
                 {
                     name: "Text Channels: ",
-                    value: `${interaction.guild.channels.cache.filter(channel => channel.type === 'text').size} channels!`,
+                    value: `${interaction.guild.channels.cache.filter(channel => channel.type === 'text').size}`,
                     inline: true
                 },
                 {
                     name: "Voice Channels: ",
-                    value: `${interaction.guild.channels.cache.filter(channel => channel.type === 'voice').size} channels!`,
+                    value: `${interaction.guild.channels.cache.filter(channel => channel.type === 'voice').size}`,
                     inline: true
                 },
                 {
                     name: "Roles: ",
-                    value: `${interaction.guild.roles.cache.size} roles!`,
+                    value: `${interaction.guild.roles.cache.size}`,
                     inline: true
                 },
                 {
                     name: "Emoji count: ",
-                    value: interaction.guild.emojis.cache.size,
+                    value: `${interaction.guild.emojis.cache.size  || `None`}`,
                     inline: true
                 },
                 {
                     name: "Boost count: ",
-                    value: interaction.guild.premiumSubscriptionCount || '0',
+                    value: `${interaction.guild.premiumSubscriptionCount || 0}`,
                     inline: true
                 })
         await interaction.editReply({ embeds: [embed] });

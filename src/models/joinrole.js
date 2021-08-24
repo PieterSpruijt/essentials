@@ -8,4 +8,4 @@ const joinrole = new Schema({
 });
 
 // We export it as a mongoose model.
-module.exports = model("canary_joinrole", joinrole);
+module.exports = model("joinrole", joinrole);

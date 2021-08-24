@@ -19,7 +19,7 @@ module.exports = {
   run: async (bot, interaction) => {
     if (!interaction.guild.me.permissions.has(bot.perms.KICK_MEMBERS)) return bot.error(`I Dont have Permission to do that!`, bot, interaction);
     if (!interaction.member.permissions.has(bot.perms.KICK_MEMBERS)) return bot.error(`You Dont have Permission to do that!`, bot, interaction);
-    let User = interaction.data.options[0].user
+    let User = interaction.data.options[0].member
     if (User.permissions.has(bot.perms.KICK_MEMBERS)) return bot.error(`You can't kick a moderator`, bot, interaction);
     if (User.permissions.has(bot.perms.BAN_MEMBERS)) return bot.error(`You can't kick a moderator`, bot, interaction);
     let Reason = interaction.data.options[1] ? interaction.data.options[1].value : `Not specified`;
@@ -27,7 +27,7 @@ module.exports = {
     interaction.guild.members.kick(User.id, { reason: Reason }).catch(() => {
       return bot.error(`I can't kick this user!`, bot, interaction);
     })
-    await interaction.editReply(`**${User.tag}** is kicked for "${Reason}"`);
+    await interaction.editReply(`**${User.user.tag}** is kicked for "${Reason}"`);
   },
 };
 
