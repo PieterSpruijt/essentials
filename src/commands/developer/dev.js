@@ -163,12 +163,9 @@ module.exports = {
                     }
                 }
             } else if (type === `shard`) {
-                function kill(id) {
-                    if (bot.shard.ids.includes(parseInt(id))) process.exit();
-                }
                 const shard = interaction.data.options[0].value;
                 await interaction.editReply(`Reloaded shard ${shard}!`);
-                await bot.shard.broadcastEval(kill(shard));
+                process.exit();
             }
         }
     },
