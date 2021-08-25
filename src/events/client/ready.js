@@ -10,7 +10,7 @@ module.exports = async function (bot) {
 
     //refreshing invites
     try {
-        global.functions.refreshInvites(bot, `859137745812586506`);
+        global.functions.refreshInvites(bot);
     } catch (e) {
         //error
     }
