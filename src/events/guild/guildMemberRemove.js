@@ -3,13 +3,8 @@ const model = require("../../models/invites");
 const logchannel = require("../../models/logchannel");
 
 module.exports = async (bot, member) => {
-  console.log(`left`)
-  try {
-    /*
-    bot.guilds.cache.get(member.guild.id).invites.fetch().then(guildInvites => {
-      bot.invites[member.guild.id] = Array.prototype(guildInvites);
-    }).catch(() => {});
-    */
+  if (member.partial) await member.fetch();
+  try {    
     var user = await model.findOne({ gid: member.guild.id, userid: member.user.id });
     if (user) {
       var inviter = await model.findOne({ gid: member.guild.id, userid: user.inviter });
@@ -47,11 +42,11 @@ module.exports = async (bot, member) => {
         .setColor("BLUE")
     }
     var storedSettings = await logchannel.findOne({ gid: member.guild.id });
+    if (!storedSettings) return;
     if (!member.guild.channels.cache.get(storedSettings.logchannel)) return;
     member.guild.channels.cache.get(storedSettings.logchannel).send({ embeds: [embed] })
 
   } catch (e) {
     //error
-    console.log(e)
   }
 };

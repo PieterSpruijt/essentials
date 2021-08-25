@@ -23,6 +23,7 @@ module.exports = async (bot, oldChannel, newChannel) => {
 
             try {
                 var storedSettings = await logchannel.findOne({ gid: newChannel.guild.id });
+                if (!storedSettings) return;
                 if (!newChannel.guild.channels.cache.get(storedSettings.logchannel)) return;
                 newChannel.guild.channels.cache.get(storedSettings.logchannel).send({ embeds: [embed] })
             }

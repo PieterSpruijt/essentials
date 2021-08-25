@@ -10,6 +10,7 @@ module.exports = async (bot, emoji) => {
                 .setColor("BLUE")  
 
     var storedSettings = await logchannel.findOne({ gid: emoji.guild.id });
+    if (!storedSettings) return;
     if (!emoji.guild.channels.cache.get(storedSettings.logchannel)) return;
     emoji.guild.channels.cache.get(storedSettings.logchannel).send({embeds: [embed]})
   } catch (e) {

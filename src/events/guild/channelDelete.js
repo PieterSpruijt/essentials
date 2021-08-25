@@ -17,6 +17,7 @@ module.exports = async (bot, channel) => {
                 .setColor(`BLUE`)  
 
     var storedSettings = await logchannel.findOne({ gid: channel.guild.id });
+    if (!storedSettings) return;
     if (!channel.guild.channels.cache.get(storedSettings.logchannel)) return;
     channel.guild.channels.cache.get(storedSettings.logchannel).send({embeds: [embed]})
   } catch (e) {

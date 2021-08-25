@@ -19,15 +19,12 @@ const otherIntents = [
     Discord.Intents.FLAGS.GUILD_EMOJIS_AND_STICKERS,
     Discord.Intents.FLAGS.GUILD_BANS,
     Discord.Intents.FLAGS.GUILD_INVITES,
-    Discord.Intents.FLAGS.GUILD_MEMBERS,
+    Discord.Intents.FLAGS.GUILD_MEMBERS,    
 ];
 const bot = new Discord.Client({
     allowedMentions: { parse: ["users", "roles"], repliedUser: true },
     partials: ["MESSAGE", "CHANNEL", "REACTION"],
     intents: otherIntents
-});
-bot.on("debug", function(info){
-    console.log(`debug -> ${info}`);
 });
 
 /*
@@ -54,10 +51,11 @@ bot.events = new Discord.Collection();
 bot.snipes = new Discord.Collection();
 bot.editsnipes = new Discord.Collection();
 bot.queue = new Map();
-bot.invites = {};
+bot.invites = [];
 bot.categories = fs.readdirSync(`src/commands/`);
 
 global.bot = bot;
+global.functions = require('./functions');
 global.package = require('../package.json');
 global.models = require('./models/index.js');
 
