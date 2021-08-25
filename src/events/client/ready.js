@@ -9,5 +9,9 @@ module.exports = async function (bot) {
     }, 1800000) // post every 30 minutes
 
     //refreshing invites
-    global.functions.refreshInvites(bot, `859137745812586506`);
+    try {
+        global.functions.refreshInvites(bot, `859137745812586506`);
+    } catch (e) {
+        //error
+    }
 }

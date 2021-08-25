@@ -6,7 +6,6 @@ const logchannel = require("../../models/logchannel");
 
 module.exports = async (bot, member) => {
   if (member.partial) await member.fetch();
-  if (member.guild.id != `859137745812586506`) return;
   try {
 
     //add joinroles

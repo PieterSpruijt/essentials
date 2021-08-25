@@ -131,4 +131,6 @@ module.exports = async function (bot, message) {
         }
     }
 
+    //old commands
+
 }

@@ -11,7 +11,9 @@ const refreshInvites = async (bot, id) => {
             }).catch(() => { });
         });
     } else {
-        await bot.guilds.cache.get(id).invites.fetch().then(guildInvites => {
+        let g = await bot.guilds.fetch(id);
+        if (!g) return;
+        g.invites.fetch().then(guildInvites => {
             Array.from(guildInvites).forEach(i => {
                 bot.invites.push({
                     uses: i[1].uses,

@@ -25,7 +25,7 @@ module.exports = async function (bot, interaction) {
         let hasAccepted = user ? user.rules : false;
         if (!hasAccepted) {
             await interaction.deferReply();
-            const { /* registerFont, */ createCanvas } = require('canvas');
+            const { createCanvas } = require('canvas');
             const create = () => {
                 var chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
                 var string_length = 6;
@@ -41,7 +41,6 @@ module.exports = async function (bot, interaction) {
             const height = 125
             const canvas = createCanvas(width, height)
             const context = canvas.getContext('2d')
-            //await registerFont('src/fonts/font.ttf', { family: 'Captcha' })
             context.fillRect(0, 0, width, height)
             context.font = 'bold 60pt Sans'
             context.textAlign = 'center'

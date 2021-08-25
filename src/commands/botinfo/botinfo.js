@@ -167,10 +167,10 @@ module.exports = {
         .setTitle(`Debug info`)
         .addFields(
           { name: `Server ID:`, value: interaction.guild.id },
-          { name: `Shard:`, value: `[${bot.shard.ids}/${bot.shard.client.ws.totalShards} ]` },
-          { name: `Server Region:`, value: interaction.guild.region },
+          { name: `Shard:`, value: `[${bot.shard.ids[0] + 1}/${bot.shard.client.ws.totalShards} ]` },
+          //{ name: `Server Region:`, value: interaction.guild.region },
           { name: `Total Memory:`, value: `${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)} MB` },
-          { name: `Voice channels connected:`, value: bot.voice.connections.size }
+          { name: `Voice channels connected:`, value: `${bot.voice.connections ? bot.voice.connections.size : 0}` }
         )
         .setColor(userinfo.color);
       await interaction.editReply({ embeds: [Embed] });
