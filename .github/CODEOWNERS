@@ -2,4 +2,4 @@
 * @PieterSpruijt @PieterSpruijtDev
 
 # @DotwoodMedia did help with logging
-src/events/guild @DotwoodMedia
+src/events/guild/* @DotwoodMedia
