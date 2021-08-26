@@ -1,0 +1,31 @@
+{
+    "languages": [
+        "english",
+        "dutch"
+    ],
+    "translations": {
+        "DEVELOPER": {
+            "english": "developer",
+            "dutch": "ontwikkelaar"
+        },
+        "YOU_DID_NOT_SPECIFY_A_LANGUAGE": {
+            "english": "You did not specify a language",
+            "dutch": "U heeft geen taal opgegeven"
+        },
+        "THAT_IS_NOT_A_SUPPORTED_LANGUAGE": {
+            "english": "That is no a supported language",
+            "dutch": "Dat is geen ondersteunde taal"
+        },
+        "THIS_IS_A_TEST": {
+            "dutch": "dit is een test"
+        },
+        "YOU_DO_NOT_HAVE_PERMISSIONS_TO_DO_THAT": {
+            "english": "You do not have permissions to do that",
+            "dutch": "Je hebt geen rechten om dit te doen"
+        },
+        "YOU_DID_NOT_SPECIFY_A_CUSTOM_COMMAND_NAME": {
+            "english": "You did not specify a custom command name",
+            "dutch": "U heeft geen custom command naam opgegeven"
+        }
+    }
+}
