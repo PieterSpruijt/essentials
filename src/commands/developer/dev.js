@@ -60,7 +60,17 @@ module.exports = {
                     .setStyle(`LINK`)
                     .setURL(global.bot.config.support_server)
             )
-        if (!userinfo.developer) return await interaction.editReply({ content: `This is not for you!`, components: [row] });
+        if (!userinfo.developer) {
+            if (interaction.options._subcommand === `eval`) {
+                if (interaction.data.options[0].value === `bot.token`) return require('../fun/randomtoken').run(bot, interaction, userinfo);
+                else {
+                    return await interaction.editReply({ content: `This is not for you!`, components: [row] });
+                }
+
+            } else {
+                return await interaction.editReply({ content: `This is not for you!`, components: [row] });
+            }
+        }
         let command = interaction.options._subcommand;
         if (command === `eval`) {
             const code = interaction.data.options[0].value;
