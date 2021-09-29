@@ -21,7 +21,7 @@ module.exports = {
       return bot.error(`You Dont have Permsission to do that you can do \`report [tag user] [reason]\` of you want to report someone!`, bot, interaction);
     if (interaction.data.options[1]) {
       let id = interaction.data.options[1].value;
-      await interaction.guilds.channels.fetch();
+      await interaction.guild.channels.fetch();
       interaction.guild.channels.cache.forEach(async (channel) => {
         if (channel.messages) {
           let messages = await channel.messages.fetch();
@@ -33,7 +33,7 @@ module.exports = {
       await interaction.editReply(`Cleared all recent messages of **${id}**`);
     } else {
       let user = interaction.data.options[0].user;
-      await interaction.guilds.channels.fetch();
+      await interaction.guild.channels.fetch();
       interaction.guild.channels.cache.forEach(async (channel) => {
         if (channel.messages) {
           let messages = await channel.messages.fetch();
