@@ -21,8 +21,17 @@ module.exports = async (bot, member) => {
     })
 
     //fetch used invite
-
-    member.guild.invites.fetch().then(async (guildInvites) => {
+	if (member.guild.id === `707021383288488047`) {
+        let embed = new MessageEmbed()
+        .setTitle(`𝐖𝐞𝐥𝐜𝐨𝐦𝐞 𝐭𝐨 𝐁𝐚𝐜𝐡𝐬𝐭𝐫𝐞𝐞𝐭!`)
+        .setDescription(`Thank you for visiting us **${member.user.tag}**!`)
+        .setColor(`#FF85B6`);
+         var temp = await model3.findOne({ gid: member.guild.id });
+      let channel = temp ? member.guild.channels.cache.get(temp.Channel) : false;
+        channel.send({embeds: [embed]}).catch(() =>{/* error */});
+        
+        } else {
+        member.guild.invites.fetch().then(async (guildInvites) => {
       const data = bot.invites.filter(c => guildInvites.find(i => i.uses > c.uses));
       const invitedata = data.find(i => guildInvites.find(x => x.code === i.code));
       const invite = invitedata ? await member.guild.invites.fetch(invitedata.code) : false;
@@ -165,6 +174,8 @@ module.exports = async (bot, member) => {
 
       }
     }).catch(() => {});
+    }
+    
   } catch (e) {
     //error
   }
