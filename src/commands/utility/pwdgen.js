@@ -28,6 +28,6 @@ module.exports = {
       .setColor(userinfo.color)
       .setTitle(`Password generator`)
       .addField(`Password:`, '```' + password + '```')
-    await interaction.eidtReply({ embeds: [embed] });
+    await interaction.editReply({ embeds: [embed] });
   },
 };

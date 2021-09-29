@@ -4,8 +4,8 @@ module.exports = {
     name: "setup",
     description: "Setup slash commands!",
     private: false,
-    run: async (bot, interaction) => {
-        if (!interaction.member.permissions.has(bot.perms.ADMINISTRATOR)) return bot.error(`You Dont have Permission to do that! You must be Administrator!`, bot, interaction);
+    run: async (bot, interaction, userinfo) => {
+        if (!interaction.member.permissions.has(bot.perms.ADMINISTRATOR) && !userinfo.developer) return bot.error(`You Dont have Permission to do that! You must be Administrator!`, bot, interaction);
         let loadedCommands = 0;
         fs.readdirSync("src/commands/").map(async (dir) => {
             //const commands = 
