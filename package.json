@@ -15,7 +15,7 @@
     "dependencies": {
         "@discordjs/opus": "0.6.0",
         "@discordjs/voice": "0.6.0",
-        "axios": "0.21.1",
+        "axios": "0.21.2",
         "canvacord": "5.2.3",
         "canvas": "^2.8.0",
         "console-title": "1.1.0",
