@@ -18,7 +18,7 @@ module.exports = {
   ],
   run: async (bot, interaction, userinfo) => {
     let Embed = new MessageEmbed();
-    let User = interaction.data.options[0] ? interaction.data.options[0].member : interaction.members.user;
+    let User = interaction.data.options[0] ? interaction.data.options[0].member : interaction.members;
     let userinfo2 = await userdb.findOne({ userid: User.user.id });
     if (!userinfo2) {
       userinfo2 = {

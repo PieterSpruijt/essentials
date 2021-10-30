@@ -18,7 +18,7 @@
         "axios": "0.21.2",
         "canvacord": "5.2.3",
         "canvas": "^2.8.0",
-        "console-title": "1.1.0",
+        "console-title": "^1.1.0",
         "dblapi.js": "2.4.1",
         "discord-giveaways": "4.5.1",
         "discord-image-generation": "1.4.9",

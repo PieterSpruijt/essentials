@@ -9,7 +9,7 @@ module.exports = {
     if(!queue) return bot.error(`There is nothing playing right now to pause!`, bot, interaction)
     if(queue.playing !== false)
     queue.player.pause()
-    await interaction.editRely({content: `Paused the music!`});
+    await interaction.editReply({content: `Paused the music!`});
   },
 };
 

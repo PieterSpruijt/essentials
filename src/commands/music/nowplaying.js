@@ -15,7 +15,7 @@ module.exports = {
       .addField("Duration", `${song.duration}s`, true)
       .addField("Requested by", song.req.tag, true)
       .setFooter(`Views: ${song.views}`);
-      await interaction.editRely({embeds: [thing]});
+      await interaction.editReply({embeds: [thing]});
   },
 };
 

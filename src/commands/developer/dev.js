@@ -141,7 +141,24 @@ module.exports = {
                 }).catch(() => { });
             }
         } else if (command === `test`) {
-            return await interaction.editReply(`Not in use`);
+            let embed = new Discord.MessageEmbed()
+            .setTitle(`Test`)
+            .setDescription(`Test again`);
+            let row = new Discord.MessageActionRow()
+        .addComponents(
+          new Discord.MessageButton()
+            .setCustomId(`test_yes`)
+            .setLabel(`Yes`)
+            .setStyle('PRIMARY')
+        );
+            await interaction.editReply({embeds: [embed], components: [row]});
+            const filter = m => interaction.user.id === m.user.id;
+            const collector = interaction.channel.createMessageComponentCollector({filter, componentType: 'BUTTON', time: 30000});
+            collector.on('collect', async (i) => {
+             await i.update({content: `Hi`, embeds: [embed], components: []})   ;
+            })
+            
+            //return await interaction.editReply(`Not in use`);
         } else if (command === `reload`) {
             let type = interaction.data.options[0] ? interaction.data.options[0].name : false;
             if (!type) return bot.error(`You did not specify a command or shard!`, bot, interaction);
